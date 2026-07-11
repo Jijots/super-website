@@ -5,7 +5,6 @@ import Home from "./pages/Home";
 import Company from "./pages/Company";
 import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
-import Contact from "./pages/Contact";
 
 export default function App() {
   return (
@@ -17,7 +16,6 @@ export default function App() {
           <Route path="/company" element={<Company />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:slug" element={<ProjectDetail />} />
-          <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
       <Footer />
