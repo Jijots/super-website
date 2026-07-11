@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/fonts/SpaceGrotesk-Light.otf") format("opentype");
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/fonts/SpaceGrotesk-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/fonts/SpaceGrotesk-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/fonts/SpaceGrotesk-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "UT Breado Sans Demo";
+  src: url("/fonts/UT Breado Sans Demo.otf") format("opentype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@theme {
+  --color-cream: #f4ece1;
+  --color-ink: #111111;
+  --color-super-red: #f43837;
+  --font-sans: "Space Grotesk", system-ui, sans-serif;
+  --font-display: "UT Breado Sans Demo", "Space Grotesk", system-ui, sans-serif;
+  --animate-marquee: marquee 24s linear infinite;
+  --animate-marquee-reverse: marquee-reverse 24s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes marquee-reverse {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
