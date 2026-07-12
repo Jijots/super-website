@@ -43,8 +43,7 @@
   --color-super-red: #f43837;
   --font-sans: "Space Grotesk", system-ui, sans-serif;
   --font-display: "Anton", "UT Breado Sans Demo", "Space Grotesk", system-ui, sans-serif;
-  --animate-marquee: marquee 24s linear infinite;
-  --animate-marquee-reverse: marquee-reverse 24s linear infinite;
+  --animate-marquee-slow: marquee 50s linear infinite;
   --animate-page-enter: page-enter 0.4s ease-out both;
 }
 
@@ -56,10 +55,6 @@
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
-}
-@keyframes marquee-reverse {
-  from { transform: translateX(-50%); }
-  to { transform: translateX(0); }
 }
 
 html {

@@ -3,11 +3,10 @@ import { projects } from "../data/projects";
 
 function Credit({ label, value }) {
   if (!value) return null;
-  const text = Array.isArray(value) ? value.join(", ") : value;
   return (
     <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
       <dt className="uppercase tracking-wide text-ink/40">{label}</dt>
-      <dd>{text}</dd>
+      <dd>{value}</dd>
     </div>
   );
 }
@@ -27,9 +26,7 @@ export default function ProjectDetail() {
     );
   }
 
-  const hasCredits = Boolean(
-    project.director || project.cast || project.productionCompanies,
-  );
+  const hasCredits = Boolean(project.credits?.length);
 
   return (
     <section className="px-6 py-16 md:px-10">
@@ -59,38 +56,47 @@ export default function ProjectDetail() {
         </p>
       </div>
 
-      <p className="mt-8 max-w-2xl text-lg text-super-red md:text-xl">{project.logline}</p>
+      <div className="mt-8 grid gap-10 md:grid-cols-2">
+        <div>
+          <p className="text-lg text-super-red md:text-xl">{project.logline}</p>
 
-      {hasCredits && (
-        <div className="mt-10 grid gap-6 border-b border-ink/10 pb-10 sm:grid-cols-2">
-          <Credit label="Production Companies" value={project.productionCompanies} />
-          <Credit label="Director" value={project.director} />
-          <Credit label="Cast" value={project.cast} />
-          <Credit label="Producer" value={project.producers} />
-          <Credit label="Executive Producers" value={project.executiveProducers} />
-          <Credit label="Cinematography" value={project.cinematography} />
-          <Credit label="Production Designer" value={project.productionDesigner} />
-          <Credit label="Editing" value={project.editing} />
-          <Credit label="Sound Design" value={project.soundDesign} />
-          <Credit label="Music" value={project.music} />
+          {hasCredits && (
+            <div className="mt-10 grid gap-6 border-b border-ink/10 pb-10 sm:grid-cols-2 md:grid-cols-1">
+              {project.credits.map((c) => (
+                <Credit key={c.label} label={c.label} value={c.value} />
+              ))}
+            </div>
+          )}
+
+          {project.awards && (
+            <div className="mt-10">
+              <h2 className="text-sm uppercase tracking-wide text-ink/40">Awards</h2>
+              <ul className="mt-2 space-y-1">
+                {project.awards.map((award) => (
+                  <li key={award} className="text-super-red">
+                    {award}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
-      )}
 
-      {project.awards && (
-        <div className="mt-10">
-          <h2 className="text-sm uppercase tracking-wide text-ink/40">Awards</h2>
-          <ul className="mt-2 space-y-1">
-            {project.awards.map((award) => (
-              <li key={award} className="text-super-red">
-                {award}
-              </li>
-            ))}
-          </ul>
+        <div>
+          <div className="flex aspect-video items-center justify-center rounded bg-ink text-sm uppercase tracking-wide text-cream/40">
+            Trailer coming soon
+          </div>
+
+          {project.poster && (
+            <div className="mt-4 aspect-video overflow-hidden rounded">
+              <img
+                src={project.poster}
+                alt={`${project.title} poster`}
+                className="h-full w-full object-cover object-top"
+              />
+            </div>
+          )}
         </div>
-      )}
-
-      <div className="mt-10 flex aspect-video items-center justify-center rounded bg-ink text-sm uppercase tracking-wide text-cream/40">
-        Trailer coming soon
       </div>
 
       {project.handwritingNote && (

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import superLogo from "../assets/super-logo.png";
 
 const LINKS = [
   { to: "/", label: "Home" },
@@ -25,8 +26,8 @@ export default function Navbar() {
         scrolled ? "bg-cream/70 shadow-sm backdrop-blur-md" : "bg-transparent"
       }`}
     >
-      <NavLink to="/" className="font-display text-2xl tracking-tight text-super-red">
-        SUPER!
+      <NavLink to="/" className="block">
+        <img src={superLogo} alt="SUPER!" className="h-6 w-auto md:h-7" />
       </NavLink>
 
       <nav className="hidden gap-8 text-sm font-medium uppercase tracking-wide md:flex">
