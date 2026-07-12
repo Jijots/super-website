@@ -8,9 +8,9 @@ const LINKS = [
 ];
 
 const SOCIALS = [
-  { label: "Instagram", href: "#" },
-  { label: "Facebook", href: "#" },
-  { label: "YouTube", href: "#" },
+  { label: "Instagram", href: "https://www.instagram.com/_super_ent/" },
+  { label: "Facebook", href: "https://www.facebook.com/share/1GMq1PUNon/?mibextid=wwXIfr" },
+  { label: "TikTok", href: "https://vt.tiktok.com/ZSXFLMXF2/" },
 ];
 
 export default function Footer() {
