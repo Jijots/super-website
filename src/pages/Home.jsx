@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
 import Marquee from "../components/Marquee";
 import superLogo from "../assets/super-logo.png";
+import { projects } from "../data/projects";
 
 export default function Home() {
   return (
@@ -14,9 +16,9 @@ export default function Home() {
 
       <section className="grid gap-10 px-6 py-24 md:grid-cols-2 md:gap-16 md:px-10 md:py-32">
         <h2 className="font-display text-6xl leading-[1.05] md:text-8xl">
-          WHAT
+          WHAT THE
           <br />
-          IS
+          HECK IS
           <br />
           SUPER!?
         </h2>
@@ -46,6 +48,24 @@ export default function Home() {
             International Narrative Feature winner Assel Aushakimova.
           </p>
         </div>
+      </section>
+
+      <section className="grid gap-8 px-6 pb-24 sm:grid-cols-2 md:px-10">
+        {projects.map((p) => (
+          <Link key={p.slug} to={`/projects/${p.slug}`} className="group block">
+            <div className="aspect-video overflow-hidden rounded bg-ink/5">
+              <img
+                src={p.cover}
+                alt={p.title}
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+            <p className="mt-2 text-sm text-super-red">
+              <span className="font-medium">{p.title}</span>
+              {p.director && <> — directed by {p.director}</>}
+            </p>
+          </Link>
+        ))}
       </section>
     </>
   );

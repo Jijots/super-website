@@ -1,6 +1,17 @@
 import { Link, useParams } from "react-router-dom";
 import { projects } from "../data/projects";
 
+function Credit({ label, value }) {
+  if (!value) return null;
+  const text = Array.isArray(value) ? value.join(", ") : value;
+  return (
+    <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
+      <dt className="uppercase tracking-wide text-ink/40">{label}</dt>
+      <dd>{text}</dd>
+    </div>
+  );
+}
+
 export default function ProjectDetail() {
   const { slug } = useParams();
   const project = projects.find((p) => p.slug === slug);
@@ -16,34 +27,99 @@ export default function ProjectDetail() {
     );
   }
 
+  const hasCredits = Boolean(
+    project.director || project.cast || project.productionCompanies,
+  );
+
   return (
     <section className="px-6 py-16 md:px-10">
       <Link to="/projects" className="text-sm uppercase tracking-wide text-ink/50">
         ← Back to Projects
       </Link>
-      <h1 className="mt-4 font-display text-5xl text-super-red md:text-7xl">
-        {project.title}
-      </h1>
-      <p className="mt-2 text-sm uppercase tracking-wide text-ink/50">
-        {project.tag} — {project.year}
-      </p>
-      <p className="mt-6 max-w-2xl text-super-red">{project.logline}</p>
+
+      <div className="mt-8 aspect-video overflow-hidden rounded bg-ink/5">
+        <img
+          src={project.cover}
+          alt={project.title}
+          className="h-full w-full object-cover"
+        />
+      </div>
+
+      <div className="mt-8 flex flex-col justify-between gap-4 border-b border-ink/10 pb-8 md:flex-row md:items-end">
+        <div>
+          <h1 className="font-display text-5xl text-super-red md:text-7xl">
+            {project.title}
+          </h1>
+          <p className="mt-2 text-sm uppercase tracking-wide text-ink/50">
+            {[project.director, project.genre].filter(Boolean).join(" — ")}
+          </p>
+        </div>
+        <p className="text-sm uppercase tracking-wide text-ink/50 md:text-right">
+          {[project.runtime, project.year, project.country].filter(Boolean).join(" / ")}
+        </p>
+      </div>
+
+      <p className="mt-8 max-w-2xl text-lg text-super-red md:text-xl">{project.logline}</p>
+
+      {hasCredits && (
+        <div className="mt-10 grid gap-6 border-b border-ink/10 pb-10 sm:grid-cols-2">
+          <Credit label="Production Companies" value={project.productionCompanies} />
+          <Credit label="Director" value={project.director} />
+          <Credit label="Cast" value={project.cast} />
+          <Credit label="Producer" value={project.producers} />
+          <Credit label="Executive Producers" value={project.executiveProducers} />
+          <Credit label="Cinematography" value={project.cinematography} />
+          <Credit label="Production Designer" value={project.productionDesigner} />
+          <Credit label="Editing" value={project.editing} />
+          <Credit label="Sound Design" value={project.soundDesign} />
+          <Credit label="Music" value={project.music} />
+        </div>
+      )}
+
+      {project.awards && (
+        <div className="mt-10">
+          <h2 className="text-sm uppercase tracking-wide text-ink/40">Awards</h2>
+          <ul className="mt-2 space-y-1">
+            {project.awards.map((award) => (
+              <li key={award} className="text-super-red">
+                {award}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div className="mt-10 flex aspect-video items-center justify-center rounded bg-ink text-sm uppercase tracking-wide text-cream/40">
+        Trailer coming soon
+      </div>
+
+      {project.handwritingNote && (
+        <p className="mt-10 -rotate-1 text-center font-serif text-lg italic text-ink/70">
+          {project.handwritingNote}
+        </p>
+      )}
 
       <div className="mt-10 grid gap-4 sm:grid-cols-2">
-        {project.stills.map((src, i) => (
-          <div
-            key={src}
-            className={`overflow-hidden rounded bg-ink/5 ${i === 0 ? "sm:col-span-2 aspect-video" : "aspect-[4/3]"}`}
-          >
+        {project.stills.slice(1).map((src, i) => (
+          <div key={src} className="aspect-[4/3] overflow-hidden rounded bg-ink/5">
             <img
               src={src}
-              alt={`${project.title} still ${i + 1}`}
+              alt={`${project.title} still ${i + 2}`}
               className="h-full w-full object-cover"
-              loading={i < 2 ? "eager" : "lazy"}
+              loading="lazy"
             />
           </div>
         ))}
       </div>
+
+      {project.pullQuote && (
+        <div className="mt-16 border-t border-ink/10 pt-10">
+          <p className="font-display text-3xl leading-tight text-super-red md:text-5xl">
+            {project.pullQuote.tagalog}
+          </p>
+          <p className="mt-4 max-w-2xl text-sm text-ink/50">{project.pullQuote.english}</p>
+        </div>
+      )}
     </section>
   );
 }

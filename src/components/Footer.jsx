@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const LINKS = [
   { to: "/", label: "Home" },
   { to: "/company", label: "Company" },
   { to: "/projects", label: "Projects" },
+  { to: "/contact", label: "Contact" },
 ];
 
 const SOCIALS = [
@@ -13,19 +14,26 @@ const SOCIALS = [
 ];
 
 export default function Footer() {
+  const { pathname } = useLocation();
+  const onContactPage = pathname === "/contact";
+
   return (
     <footer className="border-t-2 border-ink/10 px-6 pb-10 pt-16 md:px-10">
-      <div className="flex flex-col items-start gap-2">
-        <span className="text-sm uppercase tracking-wide text-ink/50">Let's work together</span>
-        <a
-          href="mailto:hello@super.ph"
-          className="font-display text-4xl text-super-red underline decoration-2 underline-offset-4 transition-opacity hover:opacity-70 md:text-6xl"
-        >
-          hello@super.ph →
-        </a>
-      </div>
+      {!onContactPage && (
+        <div className="flex flex-col items-start gap-2">
+          <span className="text-sm uppercase tracking-wide text-ink/50">Let's work together</span>
+          <a
+            href="mailto:hello@super.ph"
+            className="font-display text-4xl text-super-red underline decoration-2 underline-offset-4 transition-opacity hover:opacity-70 md:text-6xl"
+          >
+            hello@super.ph →
+          </a>
+        </div>
+      )}
 
-      <div className="mt-16 flex flex-col gap-8 border-t border-ink/10 pt-8 text-sm uppercase tracking-wide md:flex-row md:items-center md:justify-between">
+      <div
+        className={`flex flex-col gap-8 border-t border-ink/10 pt-8 text-sm uppercase tracking-wide md:flex-row md:items-center md:justify-between ${onContactPage ? "" : "mt-16"}`}
+      >
         <nav className="flex flex-wrap gap-6">
           {LINKS.map((link) => (
             <Link key={link.to} to={link.to} className="transition-opacity hover:opacity-60">
