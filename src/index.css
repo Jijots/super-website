@@ -45,6 +45,12 @@
   --font-display: "Anton", "UT Breado Sans Demo", "Space Grotesk", system-ui, sans-serif;
   --animate-marquee: marquee 24s linear infinite;
   --animate-marquee-reverse: marquee-reverse 24s linear infinite;
+  --animate-page-enter: page-enter 0.4s ease-out both;
+}
+
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes marquee {
