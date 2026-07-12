@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Marquee from "../components/Marquee";
+import LogoIntro from "../components/LogoIntro";
 import superLogo from "../assets/super-logo.png";
 import { projects } from "../data/projects";
 
@@ -7,9 +8,7 @@ export default function Home() {
   return (
     <>
       <section className="px-6 pb-2 pt-2 text-center md:px-10">
-        <h1 className="mx-auto w-[70vw] max-w-3xl">
-          <img src={superLogo} alt="SUPER!" className="block w-full" />
-        </h1>
+        <LogoIntro src={superLogo} alt="SUPER!" />
       </section>
 
       <Marquee />
