@@ -2,8 +2,11 @@ import { Link } from "react-router-dom";
 import Marquee from "../components/Marquee";
 import superLogo from "../assets/super-logo.png";
 import { projects } from "../data/projects";
+import { useInView } from "../hooks/useInView";
 
 export default function Home() {
+  const [cardsRef, cardsInView] = useInView();
+
   return (
     <>
       <section className="px-6 pb-2 pt-2 text-center md:px-10">
@@ -50,9 +53,18 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="grid gap-8 px-6 pb-24 sm:grid-cols-2 md:px-10">
-        {projects.map((p) => (
-          <Link key={p.slug} to={`/projects/${p.slug}`} className="group block">
+      <section ref={cardsRef} className="grid gap-8 px-6 pb-24 sm:grid-cols-2 md:px-10">
+        {projects.map((p, i) => (
+          <Link
+            key={p.slug}
+            to={`/projects/${p.slug}`}
+            className="group block transition-all duration-700"
+            style={{
+              opacity: cardsInView ? 1 : 0,
+              transform: cardsInView ? "translateY(0)" : "translateY(24px)",
+              transitionDelay: `${i * 150}ms`,
+            }}
+          >
             <div className="aspect-video overflow-hidden rounded bg-ink/5">
               <img
                 src={p.cover}

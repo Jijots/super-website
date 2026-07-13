@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import PageTransition from "./components/PageTransition";
 import IntroSplash from "./components/IntroSplash";
+import { IntroProvider } from "./context/IntroContext";
 import Home from "./pages/Home";
 import Company from "./pages/Company";
 import Projects from "./pages/Projects";
@@ -16,7 +17,7 @@ export default function App() {
   const [showSplash, setShowSplash] = useState(() => location.pathname === "/");
 
   return (
-    <>
+    <IntroProvider done={introDone}>
       <div
         className={`flex min-h-screen flex-col bg-cream text-ink transition-opacity duration-500 ${
           introDone ? "opacity-100" : "opacity-0"
@@ -42,6 +43,6 @@ export default function App() {
           onFinished={() => setShowSplash(false)}
         />
       )}
-    </>
+    </IntroProvider>
   );
 }
