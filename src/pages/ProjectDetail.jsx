@@ -33,17 +33,17 @@ export default function ProjectDetail() {
         ← Back to Projects
       </Link>
 
-      <div className="mt-8 aspect-video overflow-hidden rounded bg-ink/5">
+      <div className="mt-8 max-h-[50vh] overflow-hidden rounded bg-ink/5">
         <img
           src={project.cover}
           alt={project.title}
-          className="h-full w-full object-cover"
+          className="aspect-video w-full object-cover"
         />
       </div>
 
       <div className="mt-8 flex flex-col justify-between gap-4 border-b border-ink/10 pb-8 md:flex-row md:items-end">
         <div>
-          <h1 className="font-display text-5xl text-super-red md:text-7xl">
+          <h1 className="font-sans text-xl font-semibold text-super-red md:text-2xl">
             {project.title}
           </h1>
           <p className="mt-2 text-sm uppercase tracking-wide text-ink/50">
