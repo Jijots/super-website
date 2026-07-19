@@ -33,11 +33,11 @@ export default function ProjectDetail() {
         ← Back to Projects
       </Link>
 
-      <div className="mt-8 max-h-[50vh] overflow-hidden rounded bg-ink/5">
+      <div className="mt-8 aspect-video overflow-hidden rounded bg-ink/5">
         <img
           src={project.cover}
           alt={project.title}
-          className="aspect-video w-full object-cover"
+          className="h-full w-full object-cover"
         />
       </div>
 
