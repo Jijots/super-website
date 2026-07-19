@@ -4,10 +4,9 @@ import { projects } from "../data/projects";
 function Credit({ label, value }) {
   if (!value) return null;
   return (
-    <div className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
-      <dt className="uppercase tracking-wide text-ink/40">{label}</dt>
-      <dd>{value}</dd>
-    </div>
+    <p className="text-sm">
+      <span className="font-medium">{label}:</span> {value}
+    </p>
   );
 }
 
@@ -61,10 +60,13 @@ export default function ProjectDetail() {
           <p className="text-lg text-super-red md:text-xl">{project.logline}</p>
 
           {hasCredits && (
-            <div className="mt-10 grid gap-6 border-b border-ink/10 pb-10 sm:grid-cols-2 md:grid-cols-1">
-              {project.credits.map((c) => (
-                <Credit key={c.label} label={c.label} value={c.value} />
-              ))}
+            <div className="mt-10 border-b border-ink/10 pb-10">
+              <h2 className="text-sm uppercase tracking-wide text-ink/40">Team</h2>
+              <div className="mt-2 space-y-1">
+                {project.credits.map((c) => (
+                  <Credit key={c.label} label={c.label} value={c.value} />
+                ))}
+              </div>
             </div>
           )}
 
