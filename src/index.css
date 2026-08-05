@@ -40,9 +40,10 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-cream: #f5e8e4;
-  --color-ink: #411530;
-  --color-super-red: #d1512d;
+  /* The new Light Mode Palette */
+  --color-cream: #F8F6F2;
+  --color-ink: #111111;
+  --color-super-red: #EE4238;
   --color-gold: #f5c7a9;
   --color-brown: #543a14;
   --color-tan: #eccead;
@@ -99,12 +100,12 @@ html {
 }
 
 .dark {
-  --color-cream: #2a0e20;
-  --color-ink: #f5e8e4;
-  --color-super-red: #e8734a;
+  --color-cream: #111111;
+  --color-ink: #F8F6F2;
+  --color-super-red: #FF5A50; /* Slightly brightened so it still pops against the black */
   --color-gold: #f5c7a9;
   --color-brown: #c9a06a;
-  --color-tan: #4a3020;
+  --color-tan: #333333; /* Adjusted tan to match the new darker vibe */
 }
 
 @layer base {
