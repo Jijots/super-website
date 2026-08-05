@@ -1,29 +1,51 @@
 import { Link } from "react-router-dom";
 import Marquee from "../components/Marquee";
-import superLogo from "../assets/super-logo.png";
 import { projects } from "../data/projects";
 import { useInView } from "../hooks/useInView";
+import { useIntroDone } from "../context/IntroContext";
 
 export default function Home() {
+  const introDone = useIntroDone();
   const [aboutRef, aboutInView] = useInView();
   const [cardsRef, cardsInView] = useInView();
 
   return (
     <>
-      <section className="px-6 pb-2 pt-2 text-center md:px-10">
-        <h1 id="hero-logo-target" className="mx-auto w-[70vw] max-w-3xl md:w-[40vw] md:max-w-md">
-          <img src={superLogo} alt="SUPER!" className="block w-full" />
-        </h1>
+      {/* Hero Section - Animations are now gated by introDone */}
+      <section className="flex flex-col justify-start px-6 pt-20 pb-32 md:px-10 md:pt-24 md:pb-48 lg:pb-64">
+        <div className="mx-auto w-full max-w-7xl">
+          <h1 className="font-display text-5xl uppercase leading-[0.9] tracking-tighter text-super-anchor md:text-8xl lg:text-[9rem]">
+            <span 
+              className={`block transition-opacity duration-300 ${introDone ? "animate-page-enter opacity-100" : "opacity-0"}`} 
+              style={{ animationDelay: "0ms" }}
+            >
+              Crafting
+            </span>
+            <span 
+              className={`block font-sans lowercase italic tracking-normal text-super-anchor/40 transition-opacity duration-300 ${introDone ? "animate-page-enter opacity-100" : "opacity-0"}`} 
+              style={{ animationDelay: "150ms" }}
+            >
+              bold
+            </span>
+            <span 
+              className={`block transition-opacity duration-300 ${introDone ? "animate-page-enter opacity-100" : "opacity-0"}`} 
+              style={{ animationDelay: "300ms" }}
+            >
+              Storytelling.
+            </span>
+          </h1>
+        </div>
       </section>
 
       <Marquee />
 
+      {/* About Section */}
       <section
         ref={aboutRef}
         className="grid gap-10 px-6 py-24 md:grid-cols-2 md:gap-16 md:px-10 md:py-32"
       >
         <h2
-          className="font-display text-6xl leading-[1.05] transition-all duration-700 md:text-8xl"
+          className="font-display text-5xl leading-[1.05] text-super-anchor transition-all duration-700 md:text-7xl"
           style={{
             opacity: aboutInView ? 1 : 0,
             transform: aboutInView ? "translateY(0)" : "translateY(24px)",
@@ -35,7 +57,7 @@ export default function Home() {
           <br />
           SUPER!?
         </h2>
-        <div className="space-y-6 text-lg text-super-red md:text-2xl">
+        <div className="space-y-6 text-lg text-super-anchor/80 md:text-2xl">
           {[
             <>
               Super! is a Manila-based but globally hungry production company. We're
@@ -43,13 +65,13 @@ export default function Home() {
             </>,
             <>Our founder, Geo Lomuntad, has an impressive track record. He produced:</>,
             <>
-              <span className="underline decoration-2 underline-offset-2">The Missing</span>{" "}
+              <span className="text-super-accent underline decoration-2 underline-offset-2">The Missing</span>{" "}
               — the Philippines' official submission to the 96th Academy Awards, Best Film
               (Animator International Animated FF 2024) and Best Animated Film (Asia
               Pacific Screen Awards 2024).
             </>,
             <>
-              <span className="underline decoration-2 underline-offset-2">Sunshine</span> —
+              <span className="text-super-accent underline decoration-2 underline-offset-2">Sunshine</span> —
               premiered at Toronto IFF 2024, Palm Springs IFF, and won the Crystal Bear
               for Best Film at the Berlin IFF.
             </>,
@@ -75,6 +97,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Cards Section */}
       <section ref={cardsRef} className="grid gap-8 px-6 pb-24 sm:grid-cols-2 md:px-10">
         {projects.map((p, i) => (
           <Link
@@ -87,15 +110,15 @@ export default function Home() {
               transitionDelay: `${i * 150}ms`,
             }}
           >
-            <div className="aspect-video overflow-hidden rounded bg-tan/40">
+            <div className="aspect-video overflow-hidden rounded bg-super-anchor/5">
               <img
                 src={p.cover}
                 alt={p.title}
                 className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>
-            <p className="mt-2 text-sm text-super-red">
-              <span className="font-medium">{p.title}</span>
+            <p className="mt-4 text-sm text-super-anchor/70 transition-colors group-hover:text-super-accent">
+              <span className="font-medium text-super-anchor">{p.title}</span>
               {p.director && <> — directed by {p.director}</>}
             </p>
           </Link>
