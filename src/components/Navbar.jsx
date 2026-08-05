@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import superLogo from "../assets/super-logo.png";
+import ThemeToggle from "./ThemeToggle";
 
 const LINKS = [
   { to: "/", label: "Home" },
@@ -30,18 +31,19 @@ export default function Navbar() {
         <img src={superLogo} alt="SUPER!" className="h-6 w-auto md:h-7" />
       </NavLink>
 
-      <nav className="hidden gap-8 text-sm font-medium uppercase tracking-wide md:flex">
+      <nav className="hidden items-center gap-8 text-sm font-medium uppercase tracking-wide md:flex">
         {LINKS.map((link) => (
           <NavLink
             key={link.to}
             to={link.to}
             className={({ isActive }) =>
-              `transition-opacity hover:opacity-60 ${isActive ? "underline underline-offset-4" : ""}`
+              `transition-colors hover:text-gold ${isActive ? "underline underline-offset-4" : ""}`
             }
           >
             {link.label}
           </NavLink>
         ))}
+        <ThemeToggle />
       </nav>
 
       <button
@@ -60,6 +62,7 @@ export default function Navbar() {
               {link.label}
             </NavLink>
           ))}
+          <ThemeToggle />
         </nav>
       )}
     </header>

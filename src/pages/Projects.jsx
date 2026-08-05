@@ -9,7 +9,7 @@ export default function Projects() {
       <div className="mt-10 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((p) => (
           <Link key={p.slug} to={`/projects/${p.slug}`} className="group block">
-            <div className="relative aspect-video overflow-hidden rounded bg-ink/5">
+            <div className="relative aspect-video overflow-hidden rounded bg-tan/40">
               <img
                 src={p.cover}
                 alt={p.title}

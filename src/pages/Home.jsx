@@ -87,7 +87,7 @@ export default function Home() {
               transitionDelay: `${i * 150}ms`,
             }}
           >
-            <div className="aspect-video overflow-hidden rounded bg-ink/5">
+            <div className="aspect-video overflow-hidden rounded bg-tan/40">
               <img
                 src={p.cover}
                 alt={p.title}

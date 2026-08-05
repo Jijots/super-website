@@ -33,7 +33,7 @@ export default function ProjectDetail() {
         ← Back to Projects
       </Link>
 
-      <div className="mt-8 aspect-video overflow-hidden rounded bg-ink/5">
+      <div className="mt-8 aspect-video overflow-hidden rounded bg-tan/40">
         <img
           src={project.cover}
           alt={project.title}
@@ -109,7 +109,7 @@ export default function ProjectDetail() {
 
       <div className="mt-10 grid gap-4 sm:grid-cols-2">
         {project.stills.slice(1).map((src, i) => (
-          <div key={src} className="aspect-[4/3] overflow-hidden rounded bg-ink/5">
+          <div key={src} className="aspect-[4/3] overflow-hidden rounded bg-tan/40">
             <img
               src={src}
               alt={`${project.title} still ${i + 2}`}

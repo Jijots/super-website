@@ -37,10 +37,15 @@
   font-display: swap;
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
-  --color-cream: #f4ece1;
-  --color-ink: #111111;
-  --color-super-red: #f43837;
+  --color-cream: #f5e8e4;
+  --color-ink: #411530;
+  --color-super-red: #d1512d;
+  --color-gold: #f5c7a9;
+  --color-brown: #543a14;
+  --color-tan: #eccead;
   --font-sans: "Space Grotesk", system-ui, sans-serif;
   --font-display: "Anton", "UT Breado Sans Demo", "Space Grotesk", system-ui, sans-serif;
   --animate-sway: sway 5s ease-in-out infinite;
@@ -91,6 +96,23 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+.dark {
+  --color-cream: #2a0e20;
+  --color-ink: #f5e8e4;
+  --color-super-red: #e8734a;
+  --color-gold: #f5c7a9;
+  --color-brown: #c9a06a;
+  --color-tan: #4a3020;
+}
+
+@layer base {
+  *, *::before, *::after {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-duration: 300ms;
+    transition-timing-function: ease;
+  }
 }
 
 body {
