@@ -7,7 +7,8 @@ const LINKS = [
   { to: "/", label: "Home" },
   { to: "/company", label: "Company" },
   { to: "/projects", label: "Projects" },
-  { to: "/contact", label: "Contact" },
+  { to: "/services", label: "Services" },
+  { to: "/news", label: "News" },
 ];
 
 export default function Navbar() {
@@ -28,7 +29,12 @@ export default function Navbar() {
       }`}
     >
       <NavLink to="/" className="block">
-        <img src={superLogo} alt="SUPER!" className="h-6 w-auto md:h-7" />
+        <img 
+          src={superLogo} 
+          alt="SUPER!" 
+          id="hero-logo-target" 
+          className="h-6 w-auto md:h-7" 
+        />
       </NavLink>
 
       <nav className="hidden items-center gap-8 text-sm font-medium uppercase tracking-wide md:flex">
