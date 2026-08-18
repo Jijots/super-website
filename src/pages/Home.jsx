@@ -42,49 +42,86 @@ export default function Home() {
       {/* About Section */}
       <section
         ref={aboutRef}
-        className="grid gap-10 px-6 py-24 md:grid-cols-2 md:gap-16 md:px-10 md:py-32"
+        className="grid gap-10 overflow-x-hidden px-6 py-24 md:grid-cols-2 md:gap-16 md:px-10 md:py-32"
       >
-        <h2
-          className="font-display text-5xl leading-[1.05] text-super-anchor transition-all duration-700 md:text-7xl"
-          style={{
-            opacity: aboutInView ? 1 : 0,
-            transform: aboutInView ? "translateY(0)" : "translateY(24px)",
-          }}
-        >
-          WHAT THE
-          <br />
-          HECK IS
-          <br />
-          SUPER!?
-        </h2>
+        <div className="relative">
+          <h2
+            className="font-display text-5xl leading-[1.05] text-super-anchor transition-all duration-700 md:text-7xl"
+            style={{
+              opacity: aboutInView ? 1 : 0,
+              transform: aboutInView ? "translateY(0)" : "translateY(24px)",
+            }}
+          >
+            WHAT THE
+            <br />
+            HECK IS
+            <br />
+            SUPER!?
+          </h2>
+          <img
+            src="/images/handwriting/circles.png"
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-4 top-2 hidden w-16 -rotate-6 opacity-80 transition-opacity duration-700 dark:invert md:block"
+            style={{ opacity: aboutInView ? 0.8 : 0 }}
+          />
+          <img
+            src="/images/handwriting/underline-strokes.png"
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute -bottom-2 left-1 hidden w-40 opacity-80 transition-opacity duration-700 dark:invert md:block"
+            style={{ opacity: aboutInView ? 0.8 : 0 }}
+          />
+        </div>
         <div className="space-y-6 text-lg text-super-anchor/80 md:text-2xl">
           {[
-            <>
-              Super! is a Manila-based but globally hungry production company. We're
-              dedicated to bold, globally resonant storytelling.
-            </>,
-            <>Our founder, Geo Lomuntad, has an impressive track record. He produced:</>,
-            <>
-              <span className="text-super-accent underline decoration-2 underline-offset-2">The Missing</span>{" "}
-              — the Philippines' official submission to the 96th Academy Awards, Best Film
-              (Animator International Animated FF 2024) and Best Animated Film (Asia
-              Pacific Screen Awards 2024).
-            </>,
-            <>
-              <span className="text-super-accent underline decoration-2 underline-offset-2">Sunshine</span> —
-              premiered at Toronto IFF 2024, Palm Springs IFF, and won the Crystal Bear
-              for Best Film at the Berlin IFF.
-            </>,
-            <>
-              What's next? We're currently developing Sentinel, a rotoscope animation
-              selected at IFFR CineMart 2025 and Berlinale Talent Project Market 2025,
-              and Pay the Bill, a project by Tribeca Film Festival 2024 Best
-              International Narrative Feature winner Assel Aushakimova.
-            </>,
-          ].map((content, i) => (
+            {
+              content: (
+                <>
+                  Super! is a Manila-based but globally hungry production company. We're
+                  dedicated to bold, globally resonant storytelling.
+                </>
+              ),
+              annotation: { src: "great-stories.png", w: "w-32" },
+            },
+            {
+              content: <>Our founder, Geo Lomuntad, has an impressive track record. He produced:</>,
+              annotation: { src: "seriously-impressive-resume.png", w: "w-40" },
+            },
+            {
+              content: (
+                <>
+                  <span className="text-super-accent underline decoration-2 underline-offset-2">The Missing</span>{" "}
+                  — the Philippines' official submission to the 96th Academy Awards, Best Film
+                  (Animator International Animated FF 2024) and Best Animated Film (Asia
+                  Pacific Screen Awards 2024).
+                </>
+              ),
+            },
+            {
+              content: (
+                <>
+                  <span className="text-super-accent underline decoration-2 underline-offset-2">Sunshine</span> —
+                  premiered at Toronto IFF 2024, Palm Springs IFF, and won the Crystal Bear
+                  for Best Film at the Berlin IFF.
+                </>
+              ),
+            },
+            {
+              content: (
+                <>
+                  What's next? We're currently developing Sentinel, a rotoscope animation
+                  selected at IFFR CineMart 2025 and Berlinale Talent Project Market 2025,
+                  and Pay the Bill, a project by Tribeca Film Festival 2024 Best
+                  International Narrative Feature winner Assel Aushakimova.
+                </>
+              ),
+              annotation: { src: "blow-some-minds.png", w: "w-36" },
+            },
+          ].map(({ content, annotation }, i) => (
             <p
               key={i}
-              className="transition-all duration-700"
+              className="relative transition-all duration-700"
               style={{
                 opacity: aboutInView ? 1 : 0,
                 transform: aboutInView ? "translateY(0)" : "translateY(24px)",
@@ -92,6 +129,14 @@ export default function Home() {
               }}
             >
               {content}
+              {annotation && (
+                <img
+                  src={`/images/handwriting/${annotation.src}`}
+                  alt=""
+                  aria-hidden="true"
+                  className={`pointer-events-none absolute -right-4 top-full hidden -translate-y-2 translate-x-1/3 -rotate-3 opacity-80 dark:invert lg:block ${annotation.w}`}
+                />
+              )}
             </p>
           ))}
         </div>

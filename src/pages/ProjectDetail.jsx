@@ -95,11 +95,11 @@ export default function ProjectDetail() {
           </div>
 
           {project.poster && (
-            <div className="mt-4 aspect-video overflow-hidden rounded">
+            <div className="mt-4 overflow-hidden rounded">
               <img
                 src={project.poster}
                 alt={`${project.title} poster`}
-                className="h-full w-full object-cover object-top"
+                className="h-auto w-full"
               />
             </div>
           )}
