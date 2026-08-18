@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { projects } from "../data/projects";
+import { news } from "../data/news";
 
 function Credit({ label, value }) {
   if (!value) return null;
@@ -10,9 +11,13 @@ function Credit({ label, value }) {
   );
 }
 
+const formatDate = (dateStr) =>
+  new Date(dateStr).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+
 export default function ProjectDetail() {
   const { slug } = useParams();
   const project = projects.find((p) => p.slug === slug);
+  const projectNews = news.filter((item) => item.project === slug);
 
   if (!project) {
     return (
@@ -126,6 +131,35 @@ export default function ProjectDetail() {
             {project.pullQuote.tagalog}
           </p>
           <p className="mt-4 max-w-2xl text-sm text-ink/50">{project.pullQuote.english}</p>
+        </div>
+      )}
+
+      {projectNews.length > 0 && (
+        <div className="mt-16 border-t border-ink/10 pt-10">
+          <h2 className="text-sm uppercase tracking-wide text-ink/40">In the News</h2>
+          <div className="mt-2 divide-y divide-ink/10">
+            {projectNews.map((item) => (
+              <a
+                key={item.url}
+                href={item.url}
+                target="_blank"
+                rel="noreferrer"
+                className="group block gap-6 py-6 transition-colors md:flex md:items-baseline md:justify-between"
+              >
+                <div className="md:max-w-2xl">
+                  <p className="text-sm uppercase tracking-wide text-ink/50">
+                    {item.publication} — {formatDate(item.date)}
+                  </p>
+                  <h3 className="mt-1 font-display text-xl transition-colors group-hover:text-super-red md:text-2xl">
+                    {item.title}
+                  </h3>
+                </div>
+                <span className="mt-2 block shrink-0 text-sm uppercase tracking-wide text-ink/50 transition-colors group-hover:text-super-red md:mt-0">
+                  Read more →
+                </span>
+              </a>
+            ))}
+          </div>
         </div>
       )}
     </section>
