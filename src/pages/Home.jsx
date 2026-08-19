@@ -15,6 +15,19 @@ function Mark({ src, className }) {
   );
 }
 
+// Flows inline right after the text it annotates, so it can never overlap
+// an adjacent line the way an absolutely-positioned mark can.
+function InlineMark({ src, className }) {
+  return (
+    <img
+      src={`/images/handwriting/${src}`}
+      alt=""
+      aria-hidden="true"
+      className={`pointer-events-none mx-1 hidden h-6 max-w-none align-middle opacity-80 dark:invert md:inline-block ${className}`}
+    />
+  );
+}
+
 export default function Home() {
   const introDone = useIntroDone();
   const [aboutRef, aboutInView] = useInView();
@@ -71,23 +84,13 @@ export default function Home() {
         <div className="space-y-6 text-lg text-super-anchor/80 md:text-2xl">
           {[
             <>
-              Super! is a Manila-based but globally hungry{" "}
-              <span className="relative inline-block">
-                production
-                <Mark src="yes.png" className="-top-6 -right-1 h-auto w-14 rotate-6" />
-              </span>{" "}
+              Super! is a Manila-based but globally hungry production{" "}
+              <InlineMark src="yes.png" className="-rotate-6" />{" "}
               company. We're dedicated to bold, globally resonant storytelling.
             </>,
             <>
-              Our founder, Geo Lomuntad, has a{" "}
-              <span className="relative inline-block">
-                <s className="decoration-2">pretty decent track record</s>
-                <Mark
-                  src="seriously-impressive-resume.png"
-                  className="-top-7 left-1/2 h-auto w-48 -translate-x-1/2 -rotate-2"
-                />
-              </span>
-              . He produced:
+              Our founder, Geo Lomuntad, has a <s className="decoration-2">pretty decent track record</s>
+              <InlineMark src="seriously-impressive-resume.png" className="-rotate-2" />. He produced:
             </>,
             <>
               <span className="relative inline-block text-super-accent">
@@ -113,36 +116,19 @@ export default function Home() {
               for Best Film at the Berlin IFF.
             </>,
             <>
-              Super! was born out of a genuine, slightly obsessive love for{" "}
-              <span className="relative inline-block">
-                storytelling
-                <Mark src="great-stories.png" className="-top-7 left-0 h-auto w-32 -rotate-3" />
-              </span>
-              . Our mission is simple: to show the world incredible Filipino and Asian
-              stories (
-              <span className="relative inline-block">
-                <s className="decoration-2">and maybe win a few more awards</s>
-                <Mark
-                  src="blow-some-minds.png"
-                  className="-top-8 left-1/2 h-auto w-44 -translate-x-1/2 -rotate-2"
-                />
-              </span>
-              ).
+              Super! was born out of a genuine, slightly obsessive love for storytelling
+              <InlineMark src="great-stories.png" className="-rotate-3" />. Our mission is
+              simple: to show the world incredible Filipino and Asian stories (
+              <s className="decoration-2">and maybe win a few more awards</s>
+              <InlineMark src="blow-some-minds.png" className="-rotate-2" />).
             </>,
             <>
               What's next? We're currently developing Sentinel, a rotoscope animation
               selected at IFFR CineMart 2025 and Berlinale Talent Project Market 2025,
               and Pay the Bill, a project by Tribeca Film Festival 2024 Best
-              International Narrative Feature winner Assel Aushakimova. We're committed
-              to{" "}
-              <span className="relative inline-block">
-                <s className="decoration-2">show you stuff you haven't seen before</s>
-                <Mark
-                  src="fresh-perspective.png"
-                  className="-top-8 left-1/2 h-auto w-56 -translate-x-1/2 rotate-1"
-                />
-              </span>
-              .
+              International Narrative Feature winner Assel Aushakimova. We're committed to{" "}
+              <s className="decoration-2">show you stuff you haven't seen before</s>
+              <InlineMark src="fresh-perspective.png" className="rotate-1" />.
             </>,
           ].map((content, i) => (
             <p
