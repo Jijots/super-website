@@ -85,18 +85,18 @@ export default function Home() {
           {[
             <>
               Super! is a Manila-based but globally hungry production{" "}
-              <InlineMark src="yes.png" className="-rotate-6" />{" "}
+              <InlineMark src="yes.svg" className="-rotate-6" />{" "}
               company. We're dedicated to bold, globally resonant storytelling.
             </>,
             <>
               Our founder, Geo Lomuntad, has a <s className="decoration-2">pretty decent track record</s>
-              <InlineMark src="seriously-impressive-resume.png" className="-rotate-2" />. He produced:
+              <InlineMark src="seriously-impressive-resume.svg" className="-rotate-2" />. He produced:
             </>,
             <>
               <span className="relative inline-block text-super-accent">
                 The Missing
                 <Mark
-                  src="circle-1.png"
+                  src="circle-1.svg"
                   className="left-1/2 top-1/2 h-auto w-40 -translate-x-1/2 -translate-y-1/2 -rotate-2"
                 />
               </span>{" "}
@@ -108,7 +108,7 @@ export default function Home() {
               <span className="relative inline-block text-super-accent">
                 Sunshine
                 <Mark
-                  src="circle-2.png"
+                  src="circle-2.svg"
                   className="left-1/2 top-1/2 h-auto w-32 -translate-x-1/2 -translate-y-1/2 rotate-1"
                 />
               </span>{" "}
@@ -117,10 +117,10 @@ export default function Home() {
             </>,
             <>
               Super! was born out of a genuine, slightly obsessive love for storytelling
-              <InlineMark src="great-stories.png" className="-rotate-3" />. Our mission is
+              <InlineMark src="great-stories.svg" className="-rotate-3" />. Our mission is
               simple: to show the world incredible Filipino and Asian stories (
               <s className="decoration-2">and maybe win a few more awards</s>
-              <InlineMark src="blow-some-minds.png" className="-rotate-2" />).
+              <InlineMark src="blow-some-minds.svg" className="-rotate-2" />).
             </>,
             <>
               What's next? We're currently developing Sentinel, a rotoscope animation
@@ -128,7 +128,7 @@ export default function Home() {
               and Pay the Bill, a project by Tribeca Film Festival 2024 Best
               International Narrative Feature winner Assel Aushakimova. We're committed to{" "}
               <s className="decoration-2">show you stuff you haven't seen before</s>
-              <InlineMark src="fresh-perspective.png" className="rotate-1" />.
+              <InlineMark src="fresh-perspective.svg" className="rotate-1" />.
             </>,
           ].map((content, i) => (
             <p
