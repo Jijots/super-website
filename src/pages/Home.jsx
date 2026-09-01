@@ -10,20 +10,21 @@ function Mark({ src, className }) {
       src={`/images/handwriting/${src}`}
       alt=""
       aria-hidden="true"
-      className={`pointer-events-none absolute hidden max-w-none opacity-80 dark:invert md:block ${className}`}
+      className={`pointer-events-none absolute block max-w-none opacity-80 dark:invert ${className}`}
     />
   );
 }
 
 // Flows inline right after the text it annotates, so it can never overlap
-// an adjacent line the way an absolutely-positioned mark can.
+// an adjacent line the way an absolutely-positioned mark can. Sized in `em`
+// so it scales with the surrounding text instead of a fixed breakpoint.
 function InlineMark({ src, className }) {
   return (
     <img
       src={`/images/handwriting/${src}`}
       alt=""
       aria-hidden="true"
-      className={`pointer-events-none mx-1 hidden h-6 max-w-none align-middle opacity-80 dark:invert md:inline-block ${className}`}
+      className={`pointer-events-none mx-1 inline-block h-[1.3em] max-w-none align-middle opacity-80 dark:invert ${className}`}
     />
   );
 }
@@ -97,7 +98,7 @@ export default function Home() {
                 The Missing
                 <Mark
                   src="circle-1.svg"
-                  className="left-1/2 top-1/2 h-auto w-40 -translate-x-1/2 -translate-y-1/2 -rotate-2"
+                  className="left-1/2 top-1/2 h-auto w-[6.5em] -translate-x-1/2 -translate-y-1/2 -rotate-2"
                 />
               </span>{" "}
               — the Philippines' official submission to the 96th Academy Awards, Best Film
@@ -109,7 +110,7 @@ export default function Home() {
                 Sunshine
                 <Mark
                   src="circle-2.svg"
-                  className="left-1/2 top-1/2 h-auto w-32 -translate-x-1/2 -translate-y-1/2 rotate-1"
+                  className="left-1/2 top-1/2 h-auto w-[5em] -translate-x-1/2 -translate-y-1/2 rotate-1"
                 />
               </span>{" "}
               — premiered at Toronto IFF 2024, Palm Springs IFF, and won the Crystal Bear
