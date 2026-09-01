@@ -38,13 +38,19 @@ export default function ProjectDetail() {
         ← Back to Projects
       </Link>
 
-      <div className="mt-8 aspect-video overflow-hidden rounded bg-tan/40">
-        <img
-          src={project.cover}
-          alt={project.title}
-          className="h-full w-full object-cover"
-        />
-      </div>
+      {project.cover ? (
+        <div className="mt-8 aspect-video overflow-hidden rounded bg-tan/40">
+          <img
+            src={project.cover}
+            alt={project.title}
+            className="h-full w-full object-cover"
+          />
+        </div>
+      ) : (
+        <div className="mt-8 flex aspect-video items-center justify-center rounded ring-2 ring-super-red/30 text-sm uppercase tracking-wide text-super-red/50">
+          Stills coming soon
+        </div>
+      )}
 
       <div className="mt-8 flex flex-col justify-between gap-4 border-b border-ink/10 pb-8 md:flex-row md:items-end">
         <div>

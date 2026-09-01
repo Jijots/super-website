@@ -1,33 +1,75 @@
 import { Link } from "react-router-dom";
-import { projects } from "../data/projects";
+import { CATEGORIES, projects } from "../data/projects";
+
+// Geo's 2.0 artboard: a red rule grid, category label in the left gutter, and
+// the still and its title alternating sides row to row.
+function Row({ project, index }) {
+  const imageFirst = index % 2 === 0;
+
+  const still = project.cover ? (
+    <img
+      src={project.cover}
+      alt={project.title}
+      className="h-full w-full rounded-xl object-cover ring-2 ring-super-red"
+      loading="lazy"
+    />
+  ) : (
+    <div className="flex h-full w-full items-center justify-center rounded-xl px-4 text-center text-xs uppercase tracking-wide text-super-red/50 ring-2 ring-super-red/30">
+      Stills coming soon
+    </div>
+  );
+
+  const caption = (
+    <div className={imageFirst ? "md:text-left" : "md:text-right"}>
+      <h3 className="font-display text-xl leading-tight text-super-red md:text-2xl">
+        {project.title}
+        {project.year ? ` (${project.year})` : ""}
+      </h3>
+      {project.director && (
+        <p className="mt-1 text-xs text-super-red/70 md:text-sm">dir. {project.director}</p>
+      )}
+    </div>
+  );
+
+  return (
+    <div className="grid items-center gap-4 border-b-2 border-super-red py-6 md:grid-cols-2 md:gap-8">
+      <div className={`aspect-video ${imageFirst ? "md:order-1" : "md:order-2"}`}>{still}</div>
+      <div className={imageFirst ? "md:order-2" : "md:order-1"}>{caption}</div>
+    </div>
+  );
+}
 
 export default function Projects() {
   return (
     <section className="px-6 py-16 md:px-10">
       <h1 className="font-display text-5xl text-super-red md:text-7xl">PROJECTS</h1>
 
-      <div className="mt-10 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
-        {projects.map((p) => (
-          <Link key={p.slug} to={`/projects/${p.slug}`} className="group block">
-            <div className="relative aspect-video overflow-hidden rounded bg-tan/40">
-              <img
-                src={p.cover}
-                alt={p.title}
-                className="h-full w-full object-cover grayscale transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0"
-              />
-              <div className="pointer-events-none absolute inset-0 flex items-end bg-ink/0 p-4 transition-colors duration-300 group-hover:bg-ink/20">
-                <span className="translate-y-2 font-display text-sm uppercase tracking-wide text-cream opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                  View project →
-                </span>
-              </div>
+      {CATEGORIES.map((cat) => {
+        const items = projects.filter((p) => p.category === cat.id);
+        if (!items.length) return null;
+
+        return (
+          <div key={cat.id} className="mt-12 md:grid md:grid-cols-[9rem_1fr] md:gap-8">
+            <h2 className="font-display text-2xl leading-[0.95] text-super-red md:sticky md:top-24 md:self-start md:text-3xl">
+              {cat.label[0]}
+              <br />
+              <span className="text-xl md:text-2xl">{cat.label[1]}</span>
+            </h2>
+
+            <div className="mt-4 border-t-2 border-super-red md:mt-0">
+              {items.map((p, i) =>
+                p.pending ? (
+                  <Row key={p.slug} project={p} index={i} />
+                ) : (
+                  <Link key={p.slug} to={`/projects/${p.slug}`} className="group block">
+                    <Row project={p} index={i} />
+                  </Link>
+                ),
+              )}
             </div>
-            <h2 className="mt-3 font-display text-xl">{p.title}</h2>
-            <p className="mt-1 text-sm uppercase tracking-wide text-ink/50">
-              {p.tag} — {p.year}
-            </p>
-          </Link>
-        ))}
-      </div>
+          </div>
+        );
+      })}
     </section>
   );
 }

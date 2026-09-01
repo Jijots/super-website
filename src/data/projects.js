@@ -1,6 +1,14 @@
+// Category order follows Geo's Super Website 2.0 projects artboard.
+export const CATEGORIES = [
+  { id: "films", label: ["SUPER", "FILMS"] },
+  { id: "shorts", label: ["SUPER", "SHORTS"] },
+  { id: "music-videos", label: ["SUPER", "MUSIC VIDEOS"] },
+];
+
 export const projects = [
   {
     slug: "2-valid-ids",
+    category: "films",
     title: "2 Valid IDs",
     year: "2026",
     tag: "Cinemalaya 2026 Official Entry",
@@ -45,6 +53,7 @@ export const projects = [
   },
   {
     slug: "patay-gutom",
+    category: "films",
     title: "Patay Gutom",
     year: "2026",
     tag: "CinePanalo 2026 Official Entry",
@@ -72,9 +81,10 @@ export const projects = [
   },
   {
     slug: "runo",
+    category: "shorts",
     title: "Runo!",
-    year: "2026",
-    tag: "Qcinema 2026 Official Entry",
+    year: "2025",
+    tag: "QCinema 2025 Official Entry",
     genre: "Animation, Adventure, Comedy",
     runtime: "20 mins",
     country: "Philippines",
@@ -93,6 +103,42 @@ export const projects = [
       "In Competition, Qcinema International Film Festival 2026",
       "Los Angeles Asian Pacific Film Festival 2026",
     ],
+  },
+  {
+    slug: "surface-tension",
+    category: "shorts",
+    title: "Surface Tension",
+    year: "2025",
+    tag: "QCinema 2025",
+    country: "Philippines",
+    director: "Serrano Sisters",
+    cover: null,
+    stills: [],
+    awards: ["Best Short Film, QCinema International Film Festival 2025"],
+    // Awaiting stills, logline and full credits from Geo.
+    pending: true,
+  },
+  {
+    slug: "ours-was-a-timeless-night-burning",
+    category: "shorts",
+    title: "Ours Was A Timeless Night Burning",
+    year: "2025",
+    country: "Philippines",
+    cover: null,
+    stills: [],
+    // Awaiting director, stills, logline and credits from Geo.
+    pending: true,
+  },
+  {
+    slug: "malayo-mv",
+    category: "music-videos",
+    title: "Malayo",
+    tag: "Music Video",
+    country: "Philippines",
+    cover: null,
+    stills: [],
+    // Awaiting director, stills and credits from Geo.
+    pending: true,
   },
 ];
 
