@@ -40,10 +40,10 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* The new Light Mode Palette */
-  --color-cream: #F8F6F2;
-  --color-ink: #111111;
-  --color-super-red: #EE4238;
+  /* Palette sampled from Geo's Super Website 2.0 artboards */
+  --color-cream: #F3EBE0;
+  --color-ink: #000000;
+  --color-super-red: #F43837;
   --color-gold: #f5c7a9;
   --color-brown: #543a14;
   --color-tan: #eccead;
@@ -100,9 +100,10 @@ html {
 }
 
 .dark {
-  --color-cream: #111111;
-  --color-ink: #F8F6F2;
-  --color-super-red: #FF5A50; /* Slightly brightened so it still pops against the black */
+  /* Dark artboards are true black with the same red, per the 2.0 designs */
+  --color-cream: #000000;
+  --color-ink: #F3EBE0;
+  --color-super-red: #F43837;
   --color-gold: #f5c7a9;
   --color-brown: #c9a06a;
   --color-tan: #333333; /* Adjusted tan to match the new darker vibe */
@@ -122,4 +123,10 @@ body {
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+}
+
+/* The overscroll area is painted by <html>, and .dark lives on <html>, so set
+   it here - otherwise light cream flashes behind the page while in dark mode. */
+html {
+  background-color: var(--color-cream);
 }

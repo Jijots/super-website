@@ -52,14 +52,17 @@ export default function Navbar() {
         <ThemeToggle />
       </nav>
 
-      <button
-        aria-label="Toggle menu"
-        className="flex flex-col gap-1.5 md:hidden"
-        onClick={() => setOpen((v) => !v)}
-      >
-        <span className="h-0.5 w-6 bg-ink" />
-        <span className="h-0.5 w-6 bg-ink" />
-      </button>
+      <div className="flex items-center gap-4 md:hidden">
+        <ThemeToggle />
+        <button
+          aria-label="Toggle menu"
+          className="flex flex-col gap-1.5"
+          onClick={() => setOpen((v) => !v)}
+        >
+          <span className="h-0.5 w-6 bg-ink" />
+          <span className="h-0.5 w-6 bg-ink" />
+        </button>
+      </div>
 
       {open && (
         <nav className="absolute left-0 right-0 top-full flex flex-col gap-4 bg-cream px-6 py-6 text-sm font-medium uppercase tracking-wide shadow-md md:hidden">
@@ -68,7 +71,6 @@ export default function Navbar() {
               {link.label}
             </NavLink>
           ))}
-          <ThemeToggle />
         </nav>
       )}
     </header>

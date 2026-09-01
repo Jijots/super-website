@@ -4,31 +4,6 @@ import { projects } from "../data/projects";
 import { useInView } from "../hooks/useInView";
 import { useIntroDone } from "../context/IntroContext";
 
-function Mark({ src, className }) {
-  return (
-    <img
-      src={`/images/handwriting/${src}`}
-      alt=""
-      aria-hidden="true"
-      className={`pointer-events-none absolute block max-w-none opacity-80 dark:invert ${className}`}
-    />
-  );
-}
-
-// Flows inline right after the text it annotates, so it can never overlap
-// an adjacent line the way an absolutely-positioned mark can. Sized in `em`
-// so it scales with the surrounding text instead of a fixed breakpoint.
-function InlineMark({ src, className }) {
-  return (
-    <img
-      src={`/images/handwriting/${src}`}
-      alt=""
-      aria-hidden="true"
-      className={`pointer-events-none mx-1 inline-block h-[1.3em] max-w-none align-middle opacity-80 dark:invert ${className}`}
-    />
-  );
-}
-
 export default function Home() {
   const introDone = useIntroDone();
   const [aboutRef, aboutInView] = useInView();
@@ -85,51 +60,27 @@ export default function Home() {
         <div className="space-y-6 text-lg text-super-anchor/80 md:text-2xl">
           {[
             <>
-              Super! is a Manila-based but globally hungry production{" "}
-              <InlineMark src="yes.svg" className="-rotate-6" />{" "}
-              company. We're dedicated to bold, globally resonant storytelling.
+              Super! is a Manila-based production company committed to bold, globally
+              resonant storytelling.
             </>,
             <>
-              Our founder, Geo Lomuntad, has a <s className="decoration-2">pretty decent track record</s>
-              <InlineMark src="seriously-impressive-resume.svg" className="-rotate-2" />. He produced:
+              Founded by Geo Lomuntad, producer of internationally recognized films such
+              as <span className="text-super-accent">The Missing</span>, the Philippines'
+              official submission to the 96th Academy Awards, Best Film at Animator
+              International Animated Film Festival 2024, and Best Animated Film at the
+              Asia Pacific Screen Awards 2024.
             </>,
             <>
-              <span className="relative inline-block text-super-accent">
-                The Missing
-                <Mark
-                  src="circle-1.svg"
-                  className="left-1/2 top-1/2 h-auto w-[6.5em] -translate-x-1/2 -translate-y-1/2 -rotate-2"
-                />
-              </span>{" "}
-              — the Philippines' official submission to the 96th Academy Awards, Best Film
-              (Animator International Animated FF 2024) and Best Animated Film (Asia
-              Pacific Screen Awards 2024).
+              As well as <span className="text-super-accent">Sunshine</span>, which
+              premiered at Toronto International Film Festival 2024, Palm Springs
+              International Film Festival, and winner of the Crystal Bear for Best Film
+              at the Berlin International Film Festival 2025.
             </>,
             <>
-              <span className="relative inline-block text-super-accent">
-                Sunshine
-                <Mark
-                  src="circle-2.svg"
-                  className="left-1/2 top-1/2 h-auto w-[5em] -translate-x-1/2 -translate-y-1/2 rotate-1"
-                />
-              </span>{" "}
-              — premiered at Toronto IFF 2024, Palm Springs IFF, and won the Crystal Bear
-              for Best Film at the Berlin IFF.
-            </>,
-            <>
-              Super! was born out of a genuine, slightly obsessive love for storytelling
-              <InlineMark src="great-stories.svg" className="-rotate-3" />. Our mission is
-              simple: to show the world incredible Filipino and Asian stories (
-              <s className="decoration-2">and maybe win a few more awards</s>
-              <InlineMark src="blow-some-minds.svg" className="-rotate-2" />).
-            </>,
-            <>
-              What's next? We're currently developing Sentinel, a rotoscope animation
-              selected at IFFR CineMart 2025 and Berlinale Talent Project Market 2025,
-              and Pay the Bill, a project by Tribeca Film Festival 2024 Best
-              International Narrative Feature winner Assel Aushakimova. We're committed to{" "}
-              <s className="decoration-2">show you stuff you haven't seen before</s>
-              <InlineMark src="fresh-perspective.svg" className="rotate-1" />.
+              Super! continues to develop innovative projects, including Sentinel, a
+              rotoscope animation selected for IFFR CineMart 2025 and the Berlinale
+              Talent Project Market 2025. Super! remains dedicated to championing new
+              perspectives and groundbreaking storytelling.
             </>,
           ].map((content, i) => (
             <p

@@ -106,14 +106,8 @@ export default function ProjectDetail() {
         </div>
       </div>
 
-      {project.handwritingNote && (
-        <p className="mt-10 -rotate-1 text-center font-serif text-lg italic text-ink/70">
-          {project.handwritingNote}
-        </p>
-      )}
-
       <div className="mt-10 grid gap-4 sm:grid-cols-2">
-        {project.stills.slice(1).map((src, i) => (
+        {project.stills.slice(1, 5).map((src, i) => (
           <div key={src} className="aspect-[4/3] overflow-hidden rounded bg-tan/40">
             <img
               src={src}
