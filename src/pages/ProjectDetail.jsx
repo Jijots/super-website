@@ -39,7 +39,7 @@ export default function ProjectDetail() {
       </Link>
 
       {project.cover ? (
-        <div className="mt-8 aspect-video overflow-hidden rounded bg-tan/40">
+        <div className="mt-8 aspect-video overflow-hidden rounded-2xl ring-2 ring-super-red">
           <img
             src={project.cover}
             alt={project.title}
@@ -96,12 +96,12 @@ export default function ProjectDetail() {
         </div>
 
         <div>
-          <div className="flex aspect-video items-center justify-center rounded bg-ink text-sm uppercase tracking-wide text-cream/40">
+          <div className="flex aspect-video items-center justify-center rounded-2xl ring-2 ring-super-red/30 text-sm uppercase tracking-wide text-super-red/50">
             Trailer coming soon
           </div>
 
           {project.poster && (
-            <div className="mt-4 overflow-hidden rounded">
+            <div className="mt-4 overflow-hidden rounded-2xl ring-2 ring-super-red">
               <img
                 src={project.poster}
                 alt={`${project.title} poster`}
@@ -114,7 +114,7 @@ export default function ProjectDetail() {
 
       <div className="mt-10 grid gap-4 sm:grid-cols-2">
         {project.stills.slice(1, 5).map((src, i) => (
-          <div key={src} className="aspect-[4/3] overflow-hidden rounded bg-tan/40">
+          <div key={src} className="aspect-[4/3] overflow-hidden rounded-2xl ring-2 ring-super-red">
             <img
               src={src}
               alt={`${project.title} still ${i + 2}`}

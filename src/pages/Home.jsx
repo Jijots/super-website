@@ -12,29 +12,45 @@ export default function Home() {
 
   return (
     <>
-      {/* Hero Section - Animations are now gated by introDone */}
-      <section className="flex flex-col justify-start px-6 pt-20 pb-32 md:px-10 md:pt-24 md:pb-48 lg:pb-64">
-        <div className="mx-auto w-full max-w-7xl">
-          <h1 className="font-display text-5xl uppercase leading-[0.9] tracking-tighter text-super-anchor md:text-8xl lg:text-[9rem]">
-            <span 
-              className={`block transition-opacity duration-300 ${introDone ? "animate-page-enter opacity-100" : "opacity-0"}`} 
+      {/* Hero: "CREATE SOMETHING SUPER!" flickers on, the way Geo described it,
+          with each line set in the Cubao width his artboard uses. */}
+      <section className="flex min-h-[78vh] items-center px-6 py-20 md:min-h-[86vh] md:px-10">
+        <div className="mx-auto w-full max-w-6xl">
+          <h1 className="uppercase leading-[0.82] text-super-red">
+            <span
+              className={`block font-display-wide text-[15vw] md:text-[11vw] ${
+                introDone ? "animate-flicker" : "opacity-0"
+              }`}
               style={{ animationDelay: "0ms" }}
             >
-              Crafting
+              Create
             </span>
-            <span 
-              className={`block font-sans lowercase italic tracking-normal text-super-anchor/40 transition-opacity duration-300 ${introDone ? "animate-page-enter opacity-100" : "opacity-0"}`} 
-              style={{ animationDelay: "150ms" }}
+            <span
+              className={`block font-display-narrow text-[15vw] md:text-[11vw] ${
+                introDone ? "animate-flicker" : "opacity-0"
+              }`}
+              style={{ animationDelay: "260ms" }}
             >
-              bold
+              Something
             </span>
-            <span 
-              className={`block transition-opacity duration-300 ${introDone ? "animate-page-enter opacity-100" : "opacity-0"}`} 
-              style={{ animationDelay: "300ms" }}
+            <span
+              className={`block font-display text-[15vw] md:text-[11vw] ${
+                introDone ? "animate-flicker" : "opacity-0"
+              }`}
+              style={{ animationDelay: "520ms" }}
             >
-              Storytelling.
+              Super!
             </span>
           </h1>
+
+          <p
+            className={`mt-10 text-xs uppercase tracking-[0.2em] text-super-anchor/40 transition-opacity duration-700 ${
+              introDone ? "opacity-100" : "opacity-0"
+            }`}
+            style={{ transitionDelay: "1600ms" }}
+          >
+            Scroll to see what the heck Super! is
+          </p>
         </div>
       </section>
 
