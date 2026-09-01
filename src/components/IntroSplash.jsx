@@ -17,7 +17,7 @@ export default function IntroSplash({ onComplete, onFinished }) {
       setPhase("slide");
 
       // Wait two frames so the browser paints the "slide" class (and its
-      // frozen pop-end transform) before we change the target style —
+      // frozen pop-end transform) before we change the target style,
       // otherwise the class swap and the new transform land in the same
       // commit and there's nothing for the CSS transition to animate from.
       requestAnimationFrame(() => {

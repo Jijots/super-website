@@ -58,7 +58,7 @@ export default function ProjectDetail() {
             {project.title}
           </h1>
           <p className="mt-2 text-sm uppercase tracking-wide text-ink/50">
-            {[project.director, project.genre].filter(Boolean).join(" — ")}
+            {[project.director, project.genre].filter(Boolean).join(" / ")}
           </p>
         </div>
         <p className="text-sm uppercase tracking-wide text-ink/50 md:text-right">
@@ -148,7 +148,7 @@ export default function ProjectDetail() {
               >
                 <div className="md:max-w-2xl">
                   <p className="text-sm uppercase tracking-wide text-ink/50">
-                    {item.publication} — {formatDate(item.date)}
+                    {item.publication} / {formatDate(item.date)}
                   </p>
                   <h3 className="mt-1 font-display text-xl transition-colors group-hover:text-super-red md:text-2xl">
                     {item.title}

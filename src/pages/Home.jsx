@@ -120,7 +120,7 @@ export default function Home() {
             </div>
             <p className="mt-4 text-sm text-super-anchor/70 transition-colors group-hover:text-super-accent">
               <span className="font-medium text-super-anchor">{p.title}</span>
-              {p.director && <> — directed by {p.director}</>}
+              {p.director && <>, directed by {p.director}</>}
             </p>
           </Link>
         ))}
