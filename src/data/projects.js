@@ -41,7 +41,13 @@ export const projects = [
       { label: "Sound Design", value: "Jannina Mikaela Minglanilla" },
       { label: "Music", value: "Mikey Amistoso, Jazz Nicolas" },
     ],
-    awards: ["In Competition, Cinemalaya Independent Film Festival 2026"],
+    awards: [
+      "Special Jury Award, Cinemalaya Independent Film Festival 2026",
+      "Best Actress for Marietta Subong, Cinemalaya Independent Film Festival 2026",
+      "Audience Choice Award, Cinemalaya Independent Film Festival 2026",
+      "Hawaii International Film Festival 2026",
+      "Mar Del Plata International Film Festival 2026",
+    ],
     handwritingNote:
       "a story about the clownery of the absurdity of red tape in the Philippines. chuchuchuchu like the production company's thoughts",
     pullQuote: {
@@ -66,16 +72,19 @@ export const projects = [
     stills: Array.from({ length: 7 }, (_, i) => `/images/projects/patay-gutom/${String(i + 1).padStart(2, "0")}.jpg`),
     director: "Carl Joseph E. Papa, Ian Pangilinan",
     credits: [
-      { label: "Production Company", value: "Super! Entertainment" },
-      { label: "Writer/Director", value: "Carl Joseph E. Papa" },
-      { label: "Co-Director", value: "Ian Pangilinan" },
-      { label: "Cast", value: "Ian Pangilinan, Khalil Ramos, Agot Isidro, Cris Villanueva" },
-      { label: "Producer", value: "Geo Lomuntad" },
-      { label: "Executive Producers", value: "Geo Lomuntad, Carlson Chan" },
+      {
+        label: "Production Companies",
+        value: "Super! Entertainment, 901 Studios, Rizz Marketing",
+      },
+      { label: "Director", value: "Carl Joseph E. Papa, Ian Pangilinan" },
+      { label: "Cast", value: "Khalil Ramos, Ian Pangilinan, Agot Isidro, Cris Villanueva" },
+      { label: "Producer", value: "Geo Lomuntad, Ma. Sarah Perez" },
+      { label: "Executive Producers", value: "Geo Lomuntad, Carl Joseph E. Papa" },
       { label: "Cinematography", value: "Jethro Jamon" },
-      { label: "Production Designer", value: "Eero Yves Francisco, PDCP" },
-      { label: "Editing", value: "Benjamin Tolentino" },
-      { label: "Sound Design and Music", value: "Paolo Almaden" },
+      { label: "Production Designer", value: "Eero Yves S. Francisco, PDCP" },
+      { label: "Editing", value: "Ben Tolentino" },
+      { label: "Sound Design", value: "Paolo Almaden" },
+      { label: "Music", value: "Paolo Almaden" },
     ],
     awards: ["In Competition, CinePanalo Film Festival 2026"],
   },
@@ -123,10 +132,91 @@ export const projects = [
     category: "shorts",
     title: "Ours Was A Timeless Night Burning",
     year: "2025",
+    tag: "Short Film",
     country: "Philippines",
+    director: "Lauviah Caliboso",
     cover: null,
     stills: [],
-    // Awaiting director, stills, logline and credits from Geo.
+    credits: [
+      {
+        label: "Production Companies",
+        value:
+          "CMB Film Services, Inc., UXS Film Inc., 901 Studios, Super! Entertainment",
+      },
+      { label: "Director", value: "Lauviah Caliboso" },
+      {
+        label: "Cast",
+        value:
+          "Khryzha Sonelle “Summer” Bien, Euni Beatriz, Jorrybell Agoto, Bong Cabrera, Bart Guingona",
+      },
+      { label: "Producers", value: "Jamie Pauline Sanchez, Kim Sta. Ana" },
+      {
+        label: "Co-Producers",
+        value: "Quezon City Film Commission, Jon Galvez, Geo Lomuntad",
+      },
+      {
+        label: "Executive Producers",
+        value:
+          "Eduardo Lejano Jr., Liza Diño-Seguerra, Manet Dayrit, Marissa Caliboso, Patricia Sumagui, Madonna Tarrayo",
+      },
+      { label: "Cinematography", value: "Kara Moreno, LPS" },
+      { label: "Production Designer", value: "Kukay Bautista Zinampan" },
+      { label: "Editing", value: "Ryan Capili" },
+      { label: "Sound Design", value: "Wapak Sound Studios" },
+      { label: "Music", value: "Miguel Lorenzo Peralta" },
+    ],
+    awards: [
+      "Lokal Shorts, QCinema International Film Festival 2025",
+      "Finalist, VIPA International Film Festival 2026",
+    ],
+    // Awaiting stills and logline from Geo.
+    pending: true,
+  },
+  {
+    slug: "citys-laundry-and-taxes",
+    category: "shorts",
+    title: "City's Laundry and Taxes",
+    tag: "Short Film",
+    country: "Philippines",
+    director: "Diana Galang",
+    cover: null,
+    stills: [],
+    credits: [
+      {
+        label: "Production Companies",
+        value:
+          "V Films, Mi Casa Pelikula, Arrowhead, Terminal Six Post, WAF Studios, Super! Entertainment, Film Development Council of the Philippines",
+      },
+      { label: "Director", value: "Diana Galang" },
+      {
+        label: "Cast",
+        value: "Louise Abuel, Arabelle Arcega, Mylene Dizon, Clifford Gonzales",
+      },
+      { label: "Producer", value: "Earvic Noay, Angel Hildawa" },
+      { label: "Co-Producer", value: "Geo Lomuntad" },
+      {
+        label: "Executive Producers",
+        value:
+          "Eduardo Lejano Jr., Liza Diño-Seguerra, Manet Dayrit, Angelito Galang, Elvira Galang, Diana Galang, Adam Dumaguin",
+      },
+      { label: "Cinematography", value: "Adam Dumaguin" },
+      { label: "Production Designer", value: "Baj San Jose" },
+      { label: "Editing", value: "Miguel Ramos" },
+      { label: "Sound Design", value: "Pepe Manikan, Paulo Dela Cruz" },
+      { label: "Music", value: "Glenn Barit" },
+    ],
+    awards: [
+      "Best Short Film Nominee, 49th Gawad Urian (Philippines)",
+      "Best Narrative Film, 38th CCP Gawad Alternatibo (Philippines)",
+      "Best Asian Cinema, Short. Sweet. Film Festival (USA)",
+      "Shortlisted, ShortShorts Film Festival & Asia (Japan)",
+      "People's Choice Award, 17th Pandayang Lino Brocka (Philippines)",
+      "Special Exhibition, Minikino Film Week S-Express Exhibition (Indonesia)",
+      "Official Selection, 8th SineKabataan Film Festival (Philippines)",
+      "Official Selection, PeliKultura: CALABARZON Film Festival (Philippines)",
+      "Official Selection, 13th Nabunturan Independent Film Exhibition (Philippines)",
+    ],
+    // Awaiting stills, year and logline from Geo.
     pending: true,
   },
   {

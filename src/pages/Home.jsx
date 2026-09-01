@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { SERVICES } from "../data/services";
 import Marquee from "../components/Marquee";
 import { projects } from "../data/projects";
 import { useInView } from "../hooks/useInView";
@@ -98,9 +99,31 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Services row: one line, three columns, links into the Services tab */}
+      <section className="px-6 pb-24 md:px-10">
+        <div className="grid border-y-2 border-super-red md:grid-cols-3">
+          {SERVICES.map((service, i) => (
+            <Link
+              key={service.id}
+              to={`/services#${service.id}`}
+              className={`group px-0 py-6 transition-colors hover:bg-super-red/5 md:px-6 md:py-8 ${
+                i > 0 ? "border-t-2 border-super-red md:border-t-0 md:border-l-2" : ""
+              }`}
+            >
+              <span className="font-display text-xl uppercase leading-tight text-super-red md:text-2xl">
+                {service.title}
+              </span>
+              <span className="mt-2 block text-xs uppercase tracking-wide text-ink/40 transition-colors group-hover:text-super-red">
+                Learn more
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* Cards Section */}
       <section ref={cardsRef} className="grid gap-8 px-6 pb-24 sm:grid-cols-2 md:px-10">
-        {projects.map((p, i) => (
+        {projects.filter((p) => p.cover).map((p, i) => (
           <Link
             key={p.slug}
             to={`/projects/${p.slug}`}

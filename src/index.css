@@ -31,6 +31,24 @@
   font-display: swap;
 }
 @font-face {
+  font-family: "Cubao Free";
+  src: url("/fonts/Cubao_Free_Regular.otf") format("opentype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Cubao Free Narrow";
+  src: url("/fonts/Cubao_Free_Narrow.otf") format("opentype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Cubao Free Wide";
+  src: url("/fonts/Cubao_Free_Wide.otf") format("opentype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
   font-family: "Anton";
   src: url("/fonts/Anton-Regular.ttf") format("truetype");
   font-weight: 400;
@@ -48,7 +66,9 @@
   --color-brown: #543a14;
   --color-tan: #eccead;
   --font-sans: "Space Grotesk", system-ui, sans-serif;
-  --font-display: "Anton", "UT Breado Sans Demo", "Space Grotesk", system-ui, sans-serif;
+  --font-display: "Cubao Free", "Anton", "Space Grotesk", system-ui, sans-serif;
+  --font-display-narrow: "Cubao Free Narrow", "Cubao Free", "Anton", system-ui, sans-serif;
+  --font-display-wide: "Cubao Free Wide", "Cubao Free", "Anton", system-ui, sans-serif;
   --animate-sway: sway 5s ease-in-out infinite;
   --animate-sway-reverse: sway-reverse 5s ease-in-out infinite;
   --animate-treadmill: treadmill 14s linear infinite;

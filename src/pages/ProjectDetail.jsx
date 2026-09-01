@@ -150,7 +150,7 @@ export default function ProjectDetail() {
                   <p className="text-sm uppercase tracking-wide text-ink/50">
                     {item.publication} / {formatDate(item.date)}
                   </p>
-                  <h3 className="mt-1 font-display text-xl transition-colors group-hover:text-super-red md:text-2xl">
+                  <h3 className="mt-1 text-xl font-bold transition-colors group-hover:text-super-red md:text-2xl">
                     {item.title}
                   </h3>
                 </div>

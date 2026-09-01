@@ -21,7 +21,7 @@ function Row({ project, index }) {
 
   const caption = (
     <div className={imageFirst ? "md:text-left" : "md:text-right"}>
-      <h3 className="font-display text-xl leading-tight text-super-red md:text-2xl">
+      <h3 className="text-xl font-bold leading-tight text-super-red md:text-2xl">
         {project.title}
         {project.year ? ` (${project.year})` : ""}
       </h3>

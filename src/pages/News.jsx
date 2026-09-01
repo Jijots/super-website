@@ -33,7 +33,7 @@ export default function News() {
                   <p className="text-xs uppercase tracking-wide text-super-red/70 md:text-sm">
                     {item.publication} / {formatDate(item.date)}
                   </p>
-                  <h2 className="mt-3 font-display text-2xl leading-tight text-super-red md:text-3xl">
+                  <h2 className="mt-3 text-2xl font-bold leading-tight text-super-red md:text-3xl">
                     {item.title}
                   </h2>
                   <p className="mt-4 text-base text-ink/70 md:text-lg">{item.summary}</p>
