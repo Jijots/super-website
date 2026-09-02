@@ -103,14 +103,25 @@ export const projects = [
     stills: Array.from({ length: 7 }, (_, i) => `/images/projects/runo/${String(i + 1).padStart(2, "0")}.jpg`),
     director: "Jazmine Gin R. Pateña, Lysa Catolico",
     credits: [
-      { label: "Production Companies", value: "Super! Entertainment, Runo Studios" },
-      { label: "Writers/Directors", value: "Jazmine Gin R. Pateña, Lysa Catolico" },
+      { label: "Production Companies", value: "Super! Entertainment" },
+      { label: "Director", value: "Jazmine Gin R. Pateña, Lysa Catolico" },
       { label: "Cast", value: "Nour Hooshmand" },
-      { label: "Producers", value: "Geo Lomuntad, Carl Joseph E. Papa" },
+      { label: "Producer", value: "Geo Lomuntad, Carl Joseph E. Papa" },
+      {
+        label: "Executive Producers",
+        value:
+          "Eduardo Lejano Jr., Liza Diño-Seguerra, Manet Dayrit, Geo Lomuntad, Carl Joseph E. Papa",
+      },
+      { label: "Editing", value: "Jazmine Gin R. Pateña, Lysa Catolico" },
+      { label: "Sound Design", value: "Nicholai Minion" },
+      { label: "Music", value: "Nicholai Minion" },
     ],
     awards: [
-      "In Competition, Qcinema International Film Festival 2026",
-      "Los Angeles Asian Pacific Film Festival 2026",
+      "QCShorts Grantee and Official Selection, QCinema 2025",
+      "Official Selection, Los Angeles Asia Pacific Film Festival 2026",
+      "Short Film Finalist and Best Screenplay, Cinemalaya 2026",
+      "Best Short Film Nominee, 49th Gawad Urian 2026",
+      "Official Selection, Sydney Sci-Fi Film Festival 2026",
     ],
   },
   {
