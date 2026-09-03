@@ -126,7 +126,7 @@ export default function Home() {
                 i > 0 ? "border-t-2 border-super-red md:border-t-0 md:border-l-2" : ""
               }`}
             >
-              <span className="font-display text-xl uppercase leading-tight text-super-red md:text-2xl">
+              <span className="text-xl font-bold uppercase leading-tight tracking-tight text-super-red md:text-2xl">
                 {service.title}
               </span>
               <span className="mt-2 block text-xs uppercase tracking-wide text-ink/40 transition-colors group-hover:text-super-red">
@@ -138,7 +138,7 @@ export default function Home() {
       </section>
 
       {/* Cards Section */}
-      <section ref={cardsRef} className="grid gap-8 px-6 pb-24 sm:grid-cols-2 md:px-10">
+      <section ref={cardsRef} className="grid px-6 pb-24 sm:grid-cols-2 md:px-10">
         {projects.filter((p) => p.cover).map((p, i) => (
           <Link
             key={p.slug}
@@ -150,7 +150,7 @@ export default function Home() {
               transitionDelay: `${i * 150}ms`,
             }}
           >
-            <div className="aspect-video overflow-hidden rounded bg-super-anchor/5">
+            <div className="aspect-video overflow-hidden bg-super-anchor/5">
               <img
                 src={p.cover}
                 alt={p.title}

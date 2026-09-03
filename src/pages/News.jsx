@@ -14,7 +14,7 @@ export default function News() {
 
   return (
     <section className="overflow-x-hidden px-6 py-16 md:px-10">
-      <h1 className="font-display text-5xl text-super-red md:text-7xl">NEWS</h1>
+      <h1 className="text-5xl font-bold uppercase tracking-tight text-super-red md:text-7xl">News</h1>
 
       <div className="relative mt-10">
         <div className="overflow-hidden">
@@ -28,7 +28,7 @@ export default function News() {
                   href={item.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="group flex h-full flex-col rounded-2xl border-2 border-super-red p-6 transition-colors hover:bg-super-red/5 md:p-8"
+                  className="group flex h-full flex-col border-2 border-super-red p-6 transition-colors hover:bg-super-red/5 md:p-8"
                 >
                   <p className="text-xs uppercase tracking-wide text-super-red/70 md:text-sm">
                     {item.publication} / {formatDate(item.date)}
@@ -82,7 +82,7 @@ export default function News() {
 
       {/* Publication logos still to come from Geo. */}
       <div className="mt-20 text-center">
-        <h2 className="font-display text-3xl text-super-red md:text-5xl">AS FEATURED ON</h2>
+        <h2 className="text-3xl font-bold uppercase tracking-tight text-super-red md:text-5xl">As Featured On</h2>
         <p className="mt-4 text-sm uppercase tracking-wide text-ink/40">
           Publication logos coming soon
         </p>

@@ -39,7 +39,7 @@ export default function ProjectDetail() {
       </Link>
 
       {project.cover ? (
-        <div className="mt-8 aspect-video overflow-hidden rounded-2xl ring-2 ring-super-red">
+        <div className="mt-8 aspect-video overflow-hidden ring-2 ring-super-red">
           <img
             src={project.cover}
             alt={project.title}
@@ -47,7 +47,7 @@ export default function ProjectDetail() {
           />
         </div>
       ) : (
-        <div className="mt-8 flex aspect-video items-center justify-center rounded ring-2 ring-super-red/30 text-sm uppercase tracking-wide text-super-red/50">
+        <div className="mt-8 flex aspect-video items-center justify-center ring-2 ring-super-red/30 text-sm uppercase tracking-wide text-super-red/50">
           Stills coming soon
         </div>
       )}
@@ -96,12 +96,12 @@ export default function ProjectDetail() {
         </div>
 
         <div>
-          <div className="flex aspect-video items-center justify-center rounded-2xl ring-2 ring-super-red/30 text-sm uppercase tracking-wide text-super-red/50">
+          <div className="flex aspect-video items-center justify-center ring-2 ring-super-red/30 text-sm uppercase tracking-wide text-super-red/50">
             Trailer coming soon
           </div>
 
           {project.poster && (
-            <div className="mt-4 overflow-hidden rounded-2xl ring-2 ring-super-red">
+            <div className="mt-4 overflow-hidden ring-2 ring-super-red">
               <img
                 src={project.poster}
                 alt={`${project.title} poster`}
@@ -112,9 +112,9 @@ export default function ProjectDetail() {
         </div>
       </div>
 
-      <div className="mt-10 grid gap-4 sm:grid-cols-2">
+      <div className="mt-10 grid sm:grid-cols-2">
         {project.stills.slice(1, 5).map((src, i) => (
-          <div key={src} className="aspect-[4/3] overflow-hidden rounded-2xl ring-2 ring-super-red">
+          <div key={src} className="aspect-[4/3] overflow-hidden">
             <img
               src={src}
               alt={`${project.title} still ${i + 2}`}
@@ -127,7 +127,7 @@ export default function ProjectDetail() {
 
       {project.pullQuote && (
         <div className="mt-16 border-t border-ink/10 pt-10">
-          <p className="font-display text-3xl leading-tight text-super-red md:text-5xl">
+          <p className="text-3xl font-bold leading-tight text-super-red md:text-5xl">
             {project.pullQuote.tagalog}
           </p>
           <p className="mt-4 max-w-2xl text-sm text-ink/50">{project.pullQuote.english}</p>

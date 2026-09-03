@@ -10,17 +10,17 @@ function Row({ project, index }) {
     <img
       src={project.cover}
       alt={project.title}
-      className="h-full w-full rounded-xl object-cover ring-2 ring-super-red"
+      className="h-full w-full object-cover"
       loading="lazy"
     />
   ) : (
-    <div className="flex h-full w-full items-center justify-center rounded-xl px-4 text-center text-xs uppercase tracking-wide text-super-red/50 ring-2 ring-super-red/30">
+    <div className="flex h-full w-full items-center justify-center px-4 text-center text-xs uppercase tracking-wide text-super-red/50">
       Stills coming soon
     </div>
   );
 
   const caption = (
-    <div className={imageFirst ? "md:text-left" : "md:text-right"}>
+    <div className={`px-0 py-5 md:px-8 ${imageFirst ? "md:text-left" : "md:text-right"}`}>
       <h3 className="text-xl font-bold leading-tight text-super-red md:text-2xl">
         {project.title}
         {project.year ? ` (${project.year})` : ""}
@@ -32,8 +32,8 @@ function Row({ project, index }) {
   );
 
   return (
-    <div className="grid items-center gap-4 border-b-2 border-super-red py-6 md:grid-cols-2 md:gap-8">
-      <div className={`aspect-video ${imageFirst ? "md:order-1" : "md:order-2"}`}>{still}</div>
+    <div className="grid items-center border-b-2 border-super-red md:grid-cols-2">
+      <div className={`aspect-video border-super-red md:border-r-2 ${imageFirst ? "md:order-1" : "md:order-2 md:border-l-2 md:border-r-0"}`}>{still}</div>
       <div className={imageFirst ? "md:order-2" : "md:order-1"}>{caption}</div>
     </div>
   );
@@ -42,7 +42,7 @@ function Row({ project, index }) {
 export default function Projects() {
   return (
     <section className="px-6 py-16 md:px-10">
-      <h1 className="font-display text-5xl text-super-red md:text-7xl">PROJECTS</h1>
+      <h1 className="text-5xl font-bold uppercase tracking-tight text-super-red md:text-7xl">Projects</h1>
 
       {CATEGORIES.map((cat) => {
         const items = projects.filter((p) => p.category === cat.id);
@@ -50,7 +50,7 @@ export default function Projects() {
 
         return (
           <div key={cat.id} className="mt-12 md:grid md:grid-cols-[9rem_1fr] md:gap-8">
-            <h2 className="font-display text-2xl leading-[0.95] text-super-red md:sticky md:top-24 md:self-start md:text-3xl">
+            <h2 className="text-2xl font-bold uppercase leading-[0.95] tracking-tight text-super-red md:sticky md:top-24 md:self-start md:text-3xl">
               {cat.label[0]}
               <br />
               <span className="text-xl md:text-2xl">{cat.label[1]}</span>

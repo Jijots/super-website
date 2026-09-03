@@ -21,7 +21,7 @@ export default function Footer() {
         <span className="text-sm uppercase tracking-wide text-ink/50">Let's work together</span>
         <a
           href="mailto:hello@super.ph"
-          className="font-display text-4xl text-super-red underline decoration-2 underline-offset-4 transition-colors hover:text-gold md:text-6xl"
+          className="text-4xl font-bold text-super-red underline decoration-2 underline-offset-4 transition-colors hover:text-gold md:text-6xl"
         >
           hello@super.ph →
         </a>
