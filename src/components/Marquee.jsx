@@ -50,8 +50,8 @@ export default function Marquee() {
 
       {project && (
         <div
-          // Added text-cream, drop-shadow-lg, and pointer-events-none
-          className="pointer-events-none absolute bottom-4 left-4 z-10 text-sm font-medium uppercase tracking-wide text-cream drop-shadow-lg transition-opacity duration-300 md:bottom-6 md:left-6 md:text-base"
+          
+          className="pointer-events-none absolute bottom-4 left-4 z-10 text-sm font-medium uppercase tracking-wide text-paper drop-shadow-lg transition-opacity duration-300 md:bottom-6 md:left-6 md:text-base"
           style={{ opacity: hovered ? 1 : 0 }}
         >
           {project.title} →

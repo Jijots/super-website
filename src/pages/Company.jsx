@@ -54,9 +54,9 @@ function TeamCard({ member }) {
           )}
 
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-5 pt-20">
-            <p className="text-2xl font-bold text-cream">{member.name}</p>
-            <p className="mt-1 text-xs uppercase tracking-wide text-cream/70">{member.role}</p>
-            <span className="mt-4 inline-block bg-super-red px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-cream transition-transform group-hover:-translate-y-0.5">
+            <p className="text-2xl font-bold text-paper">{member.name}</p>
+            <p className="mt-1 text-xs uppercase tracking-wide text-paper/70">{member.role}</p>
+            <span className="mt-4 inline-block bg-super-red px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-paper transition-transform group-hover:-translate-y-0.5">
               Tap to read bio →
             </span>
           </div>
@@ -64,14 +64,14 @@ function TeamCard({ member }) {
 
         {/* back: the bio */}
         <div className="absolute inset-0 overflow-y-auto bg-super-red p-6 [backface-visibility:hidden] [transform:rotateY(180deg)]">
-          <p className="text-xl font-bold text-cream">{member.name}</p>
-          <p className="mt-1 text-xs uppercase tracking-wide text-cream/70">{member.role}</p>
-          <div className="mt-4 space-y-3 text-sm leading-relaxed text-cream/90">
+          <p className="text-xl font-bold text-paper">{member.name}</p>
+          <p className="mt-1 text-xs uppercase tracking-wide text-paper/70">{member.role}</p>
+          <div className="mt-4 space-y-3 text-sm leading-relaxed text-paper/90">
             {member.bio.map((para) => (
               <p key={para.slice(0, 32)}>{para}</p>
             ))}
           </div>
-          <span className="mt-6 inline-block text-xs font-bold uppercase tracking-wide text-cream/70">
+          <span className="mt-6 inline-block text-xs font-bold uppercase tracking-wide text-paper/70">
             ← Tap to go back
           </span>
         </div>

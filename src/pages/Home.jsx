@@ -12,44 +12,42 @@ export default function Home() {
 
   return (
     <>
-      {/* Hero: each line traced from Geo's own artboard so his warp survives,
-          drawn as a mask so it takes the theme colour, and flickering in one
-          line at a time. */}
+      {/* Hero: each line traced from Geo's artboard and placed at its original
+          position, so the lines interlock the way he drew them rather than
+          stacking with gaps. Drawn as masks so they take the theme colour. */}
       <section className="flex min-h-[80vh] items-center px-6 py-20 md:px-10">
         <div className="mx-auto w-full max-w-3xl">
-          <h1 aria-label="Create something Super!" className="block text-super-red">
+          <h1
+            aria-label="Create something Super!"
+            className="relative block w-full text-super-red"
+            style={{ aspectRatio: "1537 / 828" }}
+          >
             {[
-              { src: "line-create", ratio: "1532 / 211", delay: 0 },
-              { src: "line-something", ratio: "1534 / 372", delay: 260 },
-              { src: "line-super", ratio: "1531 / 277", delay: 520 },
+              { src: "line-create", left: "0.33%", top: "0%", w: "99.67%", h: "25.48%", delay: 0 },
+              { src: "line-something", left: "0.07%", top: "18.12%", w: "99.80%", h: "44.93%", delay: 260 },
+              { src: "line-super", left: "0%", top: "66.55%", w: "99.61%", h: "33.45%", delay: 520 },
             ].map((line) => (
               <span
                 key={line.src}
                 aria-hidden="true"
-                className={`block w-full ${introDone ? "animate-flicker" : "opacity-0"}`}
+                className={`absolute block ${introDone ? "animate-flicker" : "opacity-0"}`}
                 style={{
-                  aspectRatio: line.ratio,
+                  left: line.left,
+                  top: line.top,
+                  width: line.w,
+                  height: line.h,
                   backgroundColor: "currentColor",
                   WebkitMaskImage: `url(/images/hero/${line.src}.svg)`,
                   maskImage: `url(/images/hero/${line.src}.svg)`,
                   WebkitMaskRepeat: "no-repeat",
                   maskRepeat: "no-repeat",
-                  WebkitMaskSize: "contain",
-                  maskSize: "contain",
+                  WebkitMaskSize: "100% 100%",
+                  maskSize: "100% 100%",
                   animationDelay: `${line.delay}ms`,
                 }}
               />
             ))}
           </h1>
-
-          <p
-            className={`mt-10 text-xs uppercase tracking-[0.2em] text-ink/40 transition-opacity duration-700 ${
-              introDone ? "opacity-100" : "opacity-0"
-            }`}
-            style={{ transitionDelay: "1600ms" }}
-          >
-            Scroll to see what the heck Super! is
-          </p>
         </div>
       </section>
 

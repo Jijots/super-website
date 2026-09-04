@@ -102,7 +102,7 @@ export default function NewsCarousel({ items, size = "full" }) {
             onClick={() => go(-1)}
             aria-label="Previous article"
             disabled={index === 0}
-            className="absolute left-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-super-red text-cream transition-opacity hover:opacity-80 disabled:opacity-25 md:left-6"
+            className="absolute left-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-super-red text-paper transition-opacity hover:opacity-80 disabled:opacity-25 md:left-6"
           >
             ‹
           </button>
@@ -110,7 +110,7 @@ export default function NewsCarousel({ items, size = "full" }) {
             onClick={() => go(1)}
             aria-label="Next article"
             disabled={index === count - 1}
-            className="absolute right-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-super-red text-cream transition-opacity hover:opacity-80 disabled:opacity-25 md:right-6"
+            className="absolute right-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-super-red text-paper transition-opacity hover:opacity-80 disabled:opacity-25 md:right-6"
           >
             ›
           </button>
