@@ -44,14 +44,14 @@ export default function Marquee() {
 
       {/* Stronger gradient overlay for foolproof contrast */}
       <div 
-        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-super-anchor/90 via-super-anchor/30 to-transparent transition-opacity duration-500" 
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/30 to-transparent transition-opacity duration-500" 
         style={{ opacity: hovered ? 1 : 0 }}
       />
 
       {project && (
         <div
-          // Added text-super-canvas, drop-shadow-lg, and pointer-events-none
-          className="pointer-events-none absolute bottom-4 left-4 z-10 text-sm font-medium uppercase tracking-wide text-super-canvas drop-shadow-lg transition-opacity duration-300 md:bottom-6 md:left-6 md:text-base"
+          // Added text-cream, drop-shadow-lg, and pointer-events-none
+          className="pointer-events-none absolute bottom-4 left-4 z-10 text-sm font-medium uppercase tracking-wide text-cream drop-shadow-lg transition-opacity duration-300 md:bottom-6 md:left-6 md:text-base"
           style={{ opacity: hovered ? 1 : 0 }}
         >
           {project.title} →

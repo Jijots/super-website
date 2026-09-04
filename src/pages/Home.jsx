@@ -12,39 +12,29 @@ export default function Home() {
 
   return (
     <>
-      {/* Hero: "CREATE SOMETHING SUPER!" flickers on, the way Geo described it,
-          with each line set in the Cubao width his artboard uses. */}
+      {/* Hero: Geo's own warped lockup, traced from his artboard so the jeepney
+          arc survives. Drawn as a mask so it takes the theme colour. */}
       <section className="flex min-h-[78vh] items-center px-6 py-20 md:min-h-[86vh] md:px-10">
         <div className="mx-auto w-full max-w-6xl">
-          <h1 className="uppercase leading-[0.82] text-super-red">
-            <span
-              className={`block font-display-wide text-[15vw] md:text-[11vw] ${
-                introDone ? "animate-flicker" : "opacity-0"
-              }`}
-              style={{ animationDelay: "0ms" }}
-            >
-              Create
-            </span>
-            <span
-              className={`block font-display-narrow text-[15vw] md:text-[11vw] ${
-                introDone ? "animate-flicker" : "opacity-0"
-              }`}
-              style={{ animationDelay: "260ms" }}
-            >
-              Something
-            </span>
-            <span
-              className={`block font-display text-[15vw] md:text-[11vw] ${
-                introDone ? "animate-flicker" : "opacity-0"
-              }`}
-              style={{ animationDelay: "520ms" }}
-            >
-              Super!
-            </span>
-          </h1>
+          <h1
+            className={`w-full text-super-red ${introDone ? "animate-flicker" : "opacity-0"}`}
+            aria-label="Create something Super!"
+            style={{
+              aspectRatio: "1537 / 828",
+              backgroundColor: "currentColor",
+              WebkitMaskImage: "url(/images/hero/create-something-super.svg)",
+              maskImage: "url(/images/hero/create-something-super.svg)",
+              WebkitMaskRepeat: "no-repeat",
+              maskRepeat: "no-repeat",
+              WebkitMaskSize: "contain",
+              maskSize: "contain",
+              WebkitMaskPosition: "left center",
+              maskPosition: "left center",
+            }}
+          />
 
           <p
-            className={`mt-10 text-xs uppercase tracking-[0.2em] text-super-anchor/40 transition-opacity duration-700 ${
+            className={`mt-10 text-xs uppercase tracking-[0.2em] text-ink/40 transition-opacity duration-700 ${
               introDone ? "opacity-100" : "opacity-0"
             }`}
             style={{ transitionDelay: "1600ms" }}
@@ -62,19 +52,22 @@ export default function Home() {
         className="grid gap-10 overflow-x-hidden px-6 py-24 md:grid-cols-2 md:gap-16 md:px-10 md:py-32"
       >
         <h2
-          className="font-display text-5xl leading-[1.05] text-super-anchor transition-all duration-700 md:text-7xl"
+          className="w-full self-start text-super-red transition-all duration-700"
+          aria-label="What the heck is Super!?"
           style={{
+            aspectRatio: "1361 / 198",
+            backgroundColor: "currentColor",
+            WebkitMaskImage: "url(/images/hero/what-the-heck-is-super.svg)",
+            maskImage: "url(/images/hero/what-the-heck-is-super.svg)",
+            WebkitMaskRepeat: "no-repeat",
+            maskRepeat: "no-repeat",
+            WebkitMaskSize: "contain",
+            maskSize: "contain",
             opacity: aboutInView ? 1 : 0,
             transform: aboutInView ? "translateY(0)" : "translateY(24px)",
           }}
-        >
-          WHAT THE
-          <br />
-          HECK IS
-          <br />
-          SUPER!?
-        </h2>
-        <div className="space-y-6 text-lg text-super-anchor/80 md:text-2xl">
+        />
+        <div className="space-y-6 text-lg text-ink/80 md:text-2xl">
           {[
             <>
               Super! is a Manila-based production company committed to bold, globally
@@ -82,13 +75,13 @@ export default function Home() {
             </>,
             <>
               Founded by Geo Lomuntad, producer of internationally recognized films such
-              as <span className="text-super-accent">The Missing</span>, the Philippines'
+              as <span className="text-super-red">The Missing</span>, the Philippines'
               official submission to the 96th Academy Awards, Best Film at Animator
               International Animated Film Festival 2024, and Best Animated Film at the
               Asia Pacific Screen Awards 2024.
             </>,
             <>
-              As well as <span className="text-super-accent">Sunshine</span>, which
+              As well as <span className="text-super-red">Sunshine</span>, which
               premiered at Toronto International Film Festival 2024, Palm Springs
               International Film Festival, and winner of the Crystal Bear for Best Film
               at the Berlin International Film Festival 2025.
@@ -150,15 +143,15 @@ export default function Home() {
               transitionDelay: `${i * 150}ms`,
             }}
           >
-            <div className="aspect-video overflow-hidden bg-super-anchor/5">
+            <div className="aspect-video overflow-hidden bg-ink/5">
               <img
                 src={p.cover}
                 alt={p.title}
                 className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>
-            <p className="mt-4 text-sm text-super-anchor/70 transition-colors group-hover:text-super-accent">
-              <span className="font-medium text-super-anchor">{p.title}</span>
+            <p className="mt-4 text-sm text-ink/70 transition-colors group-hover:text-super-red">
+              <span className="font-medium text-ink">{p.title}</span>
               {p.director && <>, directed by {p.director}</>}
             </p>
           </Link>
