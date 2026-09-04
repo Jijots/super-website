@@ -56,26 +56,43 @@ export default function Home() {
       <Marquee />
 
       {/* About Section */}
-      <section
-        ref={aboutRef}
-        className="grid gap-10 overflow-x-hidden px-6 py-24 md:grid-cols-2 md:gap-16 md:px-10 md:py-32"
-      >
+      <section className="grid gap-10 overflow-x-hidden px-6 py-24 md:grid-cols-2 md:gap-16 md:px-10 md:py-32">
+        {/* The lockup is rebuilt from Geo's own layers so it can reveal piece by
+            piece when it scrolls into view, matching the hero. */}
         <h2
-          className="w-full self-start text-super-red transition-all duration-700"
+          ref={aboutRef}
           aria-label="What the heck is Super!?"
-          style={{
-            aspectRatio: "1361 / 198",
-            backgroundColor: "currentColor",
-            WebkitMaskImage: "url(/images/hero/what-the-heck-is-super.svg)",
-            maskImage: "url(/images/hero/what-the-heck-is-super.svg)",
-            WebkitMaskRepeat: "no-repeat",
-            maskRepeat: "no-repeat",
-            WebkitMaskSize: "contain",
-            maskSize: "contain",
-            opacity: aboutInView ? 1 : 0,
-            transform: aboutInView ? "translateY(0)" : "translateY(24px)",
-          }}
-        />
+          className="relative w-full self-start text-super-red"
+          style={{ aspectRatio: "1361 / 198" }}
+        >
+          {[
+            { src: "heck-what-the", left: "0%", top: "3.54%", w: "46.80%", h: "47.98%", delay: 0 },
+            { src: "heck-heck-is", left: "0.51%", top: "42.42%", w: "46.22%", h: "57.58%", delay: 220 },
+            { src: "heck-super", left: "47.91%", top: "0%", w: "52.09%", h: "83.33%", delay: 440 },
+            { src: "heck-swoosh", left: "48.05%", top: "68.18%", w: "50.77%", h: "29.80%", delay: 700 },
+          ].map((part) => (
+            <span
+              key={part.src}
+              aria-hidden="true"
+              className={`absolute block ${aboutInView ? "animate-flicker" : "opacity-0"}`}
+              style={{
+                left: part.left,
+                top: part.top,
+                width: part.w,
+                height: part.h,
+                backgroundColor: "currentColor",
+                WebkitMaskImage: `url(/images/hero/${part.src}.svg)`,
+                maskImage: `url(/images/hero/${part.src}.svg)`,
+                WebkitMaskRepeat: "no-repeat",
+                maskRepeat: "no-repeat",
+                WebkitMaskSize: "100% 100%",
+                maskSize: "100% 100%",
+                animationDelay: `${part.delay}ms`,
+              }}
+            />
+          ))}
+        </h2>
+
         <div className="space-y-6 text-lg text-ink/80 md:text-2xl">
           {[
             <>
