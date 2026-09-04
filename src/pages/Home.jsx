@@ -12,26 +12,35 @@ export default function Home() {
 
   return (
     <>
-      {/* Hero: Geo's own warped lockup, traced from his artboard so the jeepney
-          arc survives. Drawn as a mask so it takes the theme colour. */}
-      <section className="flex min-h-[78vh] items-center px-6 py-20 md:min-h-[86vh] md:px-10">
-        <div className="mx-auto w-full max-w-6xl">
-          <h1
-            className={`w-full text-super-red ${introDone ? "animate-flicker" : "opacity-0"}`}
-            aria-label="Create something Super!"
-            style={{
-              aspectRatio: "1537 / 828",
-              backgroundColor: "currentColor",
-              WebkitMaskImage: "url(/images/hero/create-something-super.svg)",
-              maskImage: "url(/images/hero/create-something-super.svg)",
-              WebkitMaskRepeat: "no-repeat",
-              maskRepeat: "no-repeat",
-              WebkitMaskSize: "contain",
-              maskSize: "contain",
-              WebkitMaskPosition: "left center",
-              maskPosition: "left center",
-            }}
-          />
+      {/* Hero: each line traced from Geo's own artboard so his warp survives,
+          drawn as a mask so it takes the theme colour, and flickering in one
+          line at a time. */}
+      <section className="flex min-h-[80vh] items-center px-6 py-20 md:px-10">
+        <div className="mx-auto w-full max-w-3xl">
+          <h1 aria-label="Create something Super!" className="block text-super-red">
+            {[
+              { src: "line-create", ratio: "1532 / 211", delay: 0 },
+              { src: "line-something", ratio: "1534 / 372", delay: 260 },
+              { src: "line-super", ratio: "1531 / 277", delay: 520 },
+            ].map((line) => (
+              <span
+                key={line.src}
+                aria-hidden="true"
+                className={`block w-full ${introDone ? "animate-flicker" : "opacity-0"}`}
+                style={{
+                  aspectRatio: line.ratio,
+                  backgroundColor: "currentColor",
+                  WebkitMaskImage: `url(/images/hero/${line.src}.svg)`,
+                  maskImage: `url(/images/hero/${line.src}.svg)`,
+                  WebkitMaskRepeat: "no-repeat",
+                  maskRepeat: "no-repeat",
+                  WebkitMaskSize: "contain",
+                  maskSize: "contain",
+                  animationDelay: `${line.delay}ms`,
+                }}
+              />
+            ))}
+          </h1>
 
           <p
             className={`mt-10 text-xs uppercase tracking-[0.2em] text-ink/40 transition-opacity duration-700 ${
