@@ -24,4 +24,3 @@ export const team = [
 export const collaborators = [];
 
 export const companyIntro = "Super! is a Filipino production company.";
-  "Super! is a proud Filipino production company committed to bold, globally resonant storytelling.";

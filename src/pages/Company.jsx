@@ -1,129 +1,86 @@
-import { useEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
+import { useEffect, useState } from "react";
 import { collaborators, companyIntro, team } from "../data/team";
 
 const PHOTO_MS = 3200;
 
-// The photos simply cross-fade here. Geo asked to keep the flip for revealing
-// the bio so the turning does not get overused.
-function TeamCard({ member, onOpen }) {
+// The card stays put in the grid: photos cross-fade on the front, and clicking
+// turns it over in place to show the bio. Geo did not want this taking over
+// the whole screen.
+function TeamCard({ member }) {
   const photos = member.photos ?? [];
+  const [flipped, setFlipped] = useState(false);
   const [photo, setPhoto] = useState(0);
   const [paused, setPaused] = useState(false);
 
   useEffect(() => {
-    if (paused || photos.length < 2) return;
+    // Hold the photo while the bio is being read.
+    if (flipped || paused || photos.length < 2) return;
     const id = setInterval(() => setPhoto((p) => (p + 1) % photos.length), PHOTO_MS);
     return () => clearInterval(id);
-  }, [paused, photos.length]);
+  }, [flipped, paused, photos.length]);
 
   return (
-    <button
-      type="button"
-      onClick={onOpen}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
-      onBlur={() => setPaused(false)}
-      aria-label={`Read bio for ${member.name}`}
-      className="group relative block h-[26rem] w-full overflow-hidden text-left ring-2 ring-super-red"
-    >
-      {photos.length ? (
-        photos.map((src, i) => (
-          <img
-            key={src}
-            src={src}
-            alt={i === 0 ? member.name : ""}
-            aria-hidden={i !== 0}
-            className="absolute inset-0 h-full w-full object-cover transition-opacity duration-1000"
-            style={{ opacity: i === photo ? 1 : 0 }}
-            loading={i === 0 ? "eager" : "lazy"}
-          />
-        ))
-      ) : (
-        <div className="flex h-full w-full items-center justify-center text-sm uppercase tracking-wide text-super-red/50">
-          Photo coming soon
-        </div>
-      )}
-
-      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-5 pt-20">
-        <p className="text-2xl font-bold text-cream">{member.name}</p>
-        <p className="mt-1 text-xs uppercase tracking-wide text-cream/70">{member.role}</p>
-        <span className="mt-4 inline-block bg-super-red px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-cream transition-transform group-hover:-translate-y-0.5">
-          Tap to read bio →
-        </span>
-      </div>
-    </button>
-  );
-}
-
-// The bio comes up over the page and turns over once to reveal itself.
-function BioCard({ member, onClose }) {
-  const closeRef = useRef(null);
-
-  useEffect(() => {
-    closeRef.current?.focus();
-    const onKey = (e) => e.key === "Escape" && onClose();
-    document.addEventListener("keydown", onKey);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prev;
-    };
-  }, [onClose]);
-
-  // Portalled to <body>: the page transition leaves a transform on an ancestor,
-  // which would otherwise make this fixed overlay size against that element
-  // instead of the viewport.
-  return createPortal(
-    <div
-      role="dialog"
-      aria-modal="true"
-      aria-label={`${member.name}, ${member.role}`}
-      onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-5"
-    >
+    <div className="[perspective:1600px]">
       <button
-        ref={closeRef}
-        onClick={onClose}
-        aria-label="Close"
-        className="fixed right-4 top-4 z-10 flex h-11 w-11 items-center justify-center bg-super-red text-xl text-cream"
+        type="button"
+        onClick={() => setFlipped((f) => !f)}
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onFocus={() => setPaused(true)}
+        onBlur={() => setPaused(false)}
+        aria-expanded={flipped}
+        aria-label={`${flipped ? "Hide" : "Read"} bio for ${member.name}`}
+        className="group relative block h-[30rem] w-full text-left transition-transform duration-700 [transform-style:preserve-3d]"
+        style={{ transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)" }}
       >
-        ✕
-      </button>
-
-      <div className="[perspective:1600px]" onClick={(e) => e.stopPropagation()}>
-        {/* Turns over once as it appears, so the photo gives way to the bio. */}
-        <div
-          className="relative h-[70vh] max-h-[34rem] w-[80vw] max-w-sm animate-card-reveal [transform-style:preserve-3d]"
-          style={{ animationDelay: "200ms" }}
-        >
-          <div className="absolute inset-0 overflow-hidden bg-ink ring-2 ring-super-red [backface-visibility:hidden]">
-            {member.photos?.[0] && (
-              <img src={member.photos[0]} alt={member.name} className="h-full w-full object-cover" />
-            )}
-          </div>
-
-          <div className="absolute inset-0 overflow-y-auto bg-super-red p-6 [backface-visibility:hidden] [transform:rotateY(180deg)]">
-            <p className="text-xl font-bold text-cream">{member.name}</p>
-            <p className="mt-1 text-xs uppercase tracking-wide text-cream/70">{member.role}</p>
-            <div className="mt-4 space-y-3 text-sm leading-relaxed text-cream/90">
-              {member.bio.map((para) => (
-                <p key={para.slice(0, 32)}>{para}</p>
-              ))}
+        {/* front: the photos */}
+        <div className="absolute inset-0 overflow-hidden bg-ink ring-2 ring-super-red [backface-visibility:hidden]">
+          {photos.length ? (
+            photos.map((src, i) => (
+              <img
+                key={src}
+                src={src}
+                alt={i === 0 ? member.name : ""}
+                aria-hidden={i !== 0}
+                className="absolute inset-0 h-full w-full object-cover transition-opacity duration-1000"
+                style={{ opacity: i === photo ? 1 : 0 }}
+                loading={i === 0 ? "eager" : "lazy"}
+              />
+            ))
+          ) : (
+            <div className="flex h-full w-full items-center justify-center text-sm uppercase tracking-wide text-super-red/50">
+              Photo coming soon
             </div>
+          )}
+
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-5 pt-20">
+            <p className="text-2xl font-bold text-cream">{member.name}</p>
+            <p className="mt-1 text-xs uppercase tracking-wide text-cream/70">{member.role}</p>
+            <span className="mt-4 inline-block bg-super-red px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-cream transition-transform group-hover:-translate-y-0.5">
+              Tap to read bio →
+            </span>
           </div>
         </div>
-      </div>
-    </div>,
-    document.body,
+
+        {/* back: the bio */}
+        <div className="absolute inset-0 overflow-y-auto bg-super-red p-6 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+          <p className="text-xl font-bold text-cream">{member.name}</p>
+          <p className="mt-1 text-xs uppercase tracking-wide text-cream/70">{member.role}</p>
+          <div className="mt-4 space-y-3 text-sm leading-relaxed text-cream/90">
+            {member.bio.map((para) => (
+              <p key={para.slice(0, 32)}>{para}</p>
+            ))}
+          </div>
+          <span className="mt-6 inline-block text-xs font-bold uppercase tracking-wide text-cream/70">
+            ← Tap to go back
+          </span>
+        </div>
+      </button>
+    </div>
   );
 }
 
 export default function Company() {
-  const [openMember, setOpenMember] = useState(null);
-
   return (
     <section className="px-6 py-16 md:px-10">
       <h1 className="max-w-4xl text-4xl font-bold uppercase leading-[1.05] tracking-tight text-super-red md:text-6xl">
@@ -135,9 +92,9 @@ export default function Company() {
       </h2>
       <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {team.map((m) => (
-          <TeamCard key={m.slug} member={m} onOpen={() => setOpenMember(m)} />
+          <TeamCard key={m.slug} member={m} />
         ))}
-        <div className="flex h-[26rem] items-center justify-center text-center text-sm uppercase tracking-wide text-super-red/40 ring-2 ring-dashed ring-super-red/30">
+        <div className="flex h-[30rem] items-center justify-center text-center text-sm uppercase tracking-wide text-super-red/40 ring-2 ring-dashed ring-super-red/30">
           Second team member
           <br />
           coming soon
@@ -160,8 +117,6 @@ export default function Company() {
           Collaborator list coming soon
         </p>
       )}
-
-      {openMember && <BioCard member={openMember} onClose={() => setOpenMember(null)} />}
     </section>
   );
 }
