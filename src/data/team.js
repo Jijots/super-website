@@ -23,5 +23,5 @@ export const team = [
 // Geo is sending the second team member plus the collaborator list and bios.
 export const collaborators = [];
 
-export const companyIntro =
+export const companyIntro = "Super! is a Filipino production company.";
   "Super! is a proud Filipino production company committed to bold, globally resonant storytelling.";

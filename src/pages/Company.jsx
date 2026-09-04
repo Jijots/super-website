@@ -2,85 +2,58 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { collaborators, companyIntro, team } from "../data/team";
 
-const SPIN_MS = 6000; // one full turn
-const HALF = SPIN_MS / 2; // a new picture every half turn
+const PHOTO_MS = 3200;
 
-// The card keeps turning and the picture has changed each time it comes back
-// round, the way Geo described an ace becoming a two. Hovering stops it so you
-// can look, and clicking opens the bio.
+// The photos simply cross-fade here. Geo asked to keep the flip for revealing
+// the bio so the turning does not get overused.
 function TeamCard({ member, onOpen }) {
   const photos = member.photos ?? [];
-  const [faces, setFaces] = useState([0, 1 % Math.max(photos.length, 1)]);
+  const [photo, setPhoto] = useState(0);
   const [paused, setPaused] = useState(false);
-  const counter = useRef(1);
 
   useEffect(() => {
     if (paused || photos.length < 2) return;
-    // Swap the hidden face while the card is edge-on, a quarter turn in.
-    let interval;
-    const start = setTimeout(() => {
-      const step = () => {
-        counter.current += 1;
-        const next = counter.current % photos.length;
-        setFaces((prev) =>
-          counter.current % 2 === 0 ? [next, prev[1]] : [prev[0], next],
-        );
-      };
-      step();
-      interval = setInterval(step, HALF);
-    }, HALF / 2);
-    return () => {
-      clearTimeout(start);
-      clearInterval(interval);
-    };
+    const id = setInterval(() => setPhoto((p) => (p + 1) % photos.length), PHOTO_MS);
+    return () => clearInterval(id);
   }, [paused, photos.length]);
 
-  const Face = ({ src, back }) => (
-    <div
-      className={`absolute inset-0 overflow-hidden bg-ink ring-2 ring-super-red [backface-visibility:hidden] ${
-        back ? "[transform:rotateY(180deg)]" : ""
-      }`}
+  return (
+    <button
+      type="button"
+      onClick={onOpen}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
+      aria-label={`Read bio for ${member.name}`}
+      className="group relative block h-[26rem] w-full overflow-hidden text-left ring-2 ring-super-red"
     >
-      {src ? (
-        <img src={src} alt="" className="h-full w-full object-cover" />
+      {photos.length ? (
+        photos.map((src, i) => (
+          <img
+            key={src}
+            src={src}
+            alt={i === 0 ? member.name : ""}
+            aria-hidden={i !== 0}
+            className="absolute inset-0 h-full w-full object-cover transition-opacity duration-1000"
+            style={{ opacity: i === photo ? 1 : 0 }}
+            loading={i === 0 ? "eager" : "lazy"}
+          />
+        ))
       ) : (
         <div className="flex h-full w-full items-center justify-center text-sm uppercase tracking-wide text-super-red/50">
           Photo coming soon
         </div>
       )}
-    </div>
-  );
 
-  return (
-    <div className="[perspective:1600px]">
-      <button
-        type="button"
-        onClick={onOpen}
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-        onFocus={() => setPaused(true)}
-        onBlur={() => setPaused(false)}
-        aria-label={`Read bio for ${member.name}`}
-        className="group relative block h-[26rem] w-full text-left [transform-style:preserve-3d] animate-card-turn"
-        style={{ animationPlayState: paused ? "paused" : "running" }}
-      >
-        <Face src={photos[faces[0]]} />
-        <Face src={photos[faces[1]]} back />
-      </button>
-
-      {/* Held outside the turning card so the name stays readable */}
-      <div className="mt-4">
-        <p className="text-2xl font-bold text-super-red">{member.name}</p>
-        <p className="mt-1 text-xs uppercase tracking-wide text-ink/50">{member.role}</p>
-        <button
-          type="button"
-          onClick={onOpen}
-          className="mt-3 inline-block bg-super-red px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-cream"
-        >
+      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-5 pt-20">
+        <p className="text-2xl font-bold text-cream">{member.name}</p>
+        <p className="mt-1 text-xs uppercase tracking-wide text-cream/70">{member.role}</p>
+        <span className="mt-4 inline-block bg-super-red px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-cream transition-transform group-hover:-translate-y-0.5">
           Tap to read bio →
-        </button>
+        </span>
       </div>
-    </div>
+    </button>
   );
 }
 
@@ -160,7 +133,7 @@ export default function Company() {
       <h2 className="mt-20 text-3xl font-bold uppercase tracking-tight text-super-red md:text-5xl">
         Our Team
       </h2>
-      <div className="mt-8 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {team.map((m) => (
           <TeamCard key={m.slug} member={m} onOpen={() => setOpenMember(m)} />
         ))}

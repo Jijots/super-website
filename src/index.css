@@ -70,7 +70,6 @@
   --font-display-narrow: "Cubao Free Narrow", "Cubao Free", "Anton", system-ui, sans-serif;
   --font-display-wide: "Cubao Free Wide", "Cubao Free", "Anton", system-ui, sans-serif;
   --animate-flicker: flicker 1.1s steps(1, end) both;
-  --animate-card-turn: card-turn 6s linear infinite;
   --animate-card-reveal: card-reveal 0.8s cubic-bezier(0.4, 0.05, 0.2, 1) both;
   --animate-sway: sway 5s ease-in-out infinite;
   --animate-sway-reverse: sway-reverse 5s ease-in-out infinite;
@@ -80,19 +79,8 @@
   --animate-spark: spark 0.7s ease-out both;
 }
 
-/* Geo's playing-card idea: the card keeps turning, and each time it passes
-   edge-on ("the thin part") the picture on it has changed, the way an ace
-   becomes a two. Rotating about the centre keeps it in its slot; the small
-   tilt is what gives it the pivoting-on-a-corner feel. */
-@keyframes card-turn {
-  0%   { transform: rotateZ(0deg) rotateY(0deg); }
-  25%  { transform: rotateZ(-3deg) rotateY(90deg); }
-  50%  { transform: rotateZ(0deg) rotateY(180deg); }
-  75%  { transform: rotateZ(3deg) rotateY(270deg); }
-  100% { transform: rotateZ(0deg) rotateY(360deg); }
-}
-
-/* One deliberate half-turn, used when the bio card opens. */
+/* Geo kept the turn for revealing the bio, so the card makes one deliberate
+   half-turn: edge-on at the midpoint is where the photo gives way to the text. */
 @keyframes card-reveal {
   0%   { transform: rotateZ(0deg) rotateY(0deg); }
   50%  { transform: rotateZ(-5deg) rotateY(90deg); }
