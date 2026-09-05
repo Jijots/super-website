@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { collaborators, companyIntro, team } from "../data/team";
+import { btsPhotos, collaborators, companyIntro, team } from "../data/team";
 
 const PHOTO_MS = 3200;
 
@@ -82,30 +82,37 @@ function TeamCard({ member }) {
 
 export default function Company() {
   return (
-    <section className="px-6 py-16 md:px-10">
-      <h1 className="max-w-4xl text-4xl font-bold uppercase leading-[1.05] tracking-tight text-super-red md:text-6xl">
+    <section className="py-16">
+      {/* On-set photos open the page, flush edge to edge. */}
+      <div className="grid grid-cols-2 md:grid-cols-4">
+        {btsPhotos.map((src, i) => (
+          <div
+            key={src}
+            className={`aspect-[4/3] overflow-hidden ${i === 0 ? "col-span-2 row-span-2 md:aspect-auto" : ""}`}
+          >
+            <img src={src} alt="" className="h-full w-full object-cover" loading={i < 4 ? "eager" : "lazy"} />
+          </div>
+        ))}
+      </div>
+
+      <h1 className="mt-16 max-w-4xl px-6 text-4xl font-bold uppercase leading-[1.05] tracking-tight text-super-red md:px-10 md:text-6xl">
         {companyIntro}
       </h1>
 
-      <h2 className="mt-20 text-3xl font-bold uppercase tracking-tight text-super-red md:text-5xl">
+      <h2 className="mt-20 px-6 text-3xl font-bold uppercase tracking-tight text-super-red md:px-10 md:text-5xl">
         Our Team
       </h2>
-      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-8 grid gap-6 px-6 sm:grid-cols-2 md:px-10 lg:grid-cols-3">
         {team.map((m) => (
           <TeamCard key={m.slug} member={m} />
         ))}
-        <div className="flex h-[30rem] items-center justify-center text-center text-sm uppercase tracking-wide text-super-red/40 ring-2 ring-dashed ring-super-red/30">
-          Second team member
-          <br />
-          coming soon
-        </div>
       </div>
 
-      <h2 className="mt-20 text-3xl font-bold uppercase tracking-tight text-super-red md:text-5xl">
+      <h2 className="mt-20 px-6 text-3xl font-bold uppercase tracking-tight text-super-red md:px-10 md:text-5xl">
         Collaborators
       </h2>
       {collaborators.length > 0 ? (
-        <ul className="mt-6 divide-y divide-super-red/30 border-y border-super-red/30">
+        <ul className="mt-6 mx-6 divide-y divide-super-red/30 border-y border-super-red/30 md:mx-10">
           {collaborators.map((c) => (
             <li key={c.name} className="py-4 text-lg">
               {c.name}
@@ -113,7 +120,7 @@ export default function Company() {
           ))}
         </ul>
       ) : (
-        <p className="mt-4 text-sm uppercase tracking-wide text-ink/40">
+        <p className="mt-4 px-6 text-sm uppercase tracking-wide text-ink/40 md:px-10">
           Collaborator list coming soon
         </p>
       )}

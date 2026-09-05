@@ -3,12 +3,15 @@ import { projects } from "../data/projects";
 import { news } from "../data/news";
 import NewsCarousel from "../components/NewsCarousel";
 
+// Geo asked for the names and companies to carry the weight, with the roles
+// set light above them so the difference is obvious at a glance.
 function Credit({ label, value }) {
   if (!value) return null;
   return (
-    <p className="text-sm">
-      <span className="font-medium">{label}:</span> {value}
-    </p>
+    <div className="py-2">
+      <p className="text-xs font-light uppercase tracking-wide text-ink/50">{label}</p>
+      <p className="text-sm font-bold text-ink md:text-base">{value}</p>
+    </div>
   );
 }
 
@@ -71,7 +74,7 @@ export default function ProjectDetail() {
           {hasCredits && (
             <div className="mt-10 border-b border-ink/10 pb-10">
               <h2 className="text-sm uppercase tracking-wide text-ink/40">Team</h2>
-              <div className="mt-2 space-y-1">
+              <div className="mt-3 divide-y divide-ink/10">
                 {project.credits.map((c) => (
                   <Credit key={c.label} label={c.label} value={c.value} />
                 ))}
@@ -94,9 +97,20 @@ export default function ProjectDetail() {
         </div>
 
         <div>
-          <div className="flex aspect-video items-center justify-center ring-2 ring-super-red/30 text-sm uppercase tracking-wide text-super-red/50">
-            Trailer coming soon
-          </div>
+          {project.trailer ? (
+            <a
+              href={project.trailer}
+              target="_blank"
+              rel="noreferrer"
+              className="flex aspect-video items-center justify-center bg-super-red text-sm font-bold uppercase tracking-wide text-paper transition-opacity hover:opacity-90"
+            >
+              Watch the trailer →
+            </a>
+          ) : (
+            <div className="flex aspect-video items-center justify-center ring-2 ring-super-red/30 text-sm uppercase tracking-wide text-super-red/50">
+              Trailer coming soon
+            </div>
+          )}
 
           {project.poster && (
             <div className="mt-4 overflow-hidden ring-2 ring-super-red">

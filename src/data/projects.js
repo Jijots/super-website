@@ -102,19 +102,29 @@ export const projects = [
     cover: "/images/projects/runo/01.jpg",
     stills: Array.from({ length: 7 }, (_, i) => `/images/projects/runo/${String(i + 1).padStart(2, "0")}.jpg`),
     director: "Jazmine Gin R. Pateña, Lysa Catolico",
+    trailer: "https://www.facebook.com/reel/852358200566749",
     credits: [
-      { label: "Production Companies", value: "Super! Entertainment" },
-      { label: "Director", value: "Jazmine Gin R. Pateña, Lysa Catolico" },
-      { label: "Cast", value: "Nour Hooshmand" },
-      { label: "Producer", value: "Geo Lomuntad, Carl Joseph E. Papa" },
+      {
+        label: "Production Companies",
+        value: "Super! Entertainment, Runo Studios, QCinema",
+      },
+      { label: "Written and Directed by", value: "Lysa Catolico, Jazmine Gin R. Pateña" },
+      { label: "Starring", value: "Nour Hooshmand" },
+      { label: "Sound Designer and Musical Scorer", value: "Nicholai Minion" },
+      { label: "Editors", value: "Lysa Catolico, Jazmine Gin R. Pateña" },
+      { label: "Animation Supervisor", value: "Kyle Riley Sagum" },
+      { label: "Backgrounds Supervisor", value: "Michael Moncayo" },
+      { label: "Associate Producer", value: "Rory Esguerra" },
+      { label: "Line Producer", value: "Rebekah Sarabosing" },
+      {
+        label: "Producers",
+        value: "Carl Joseph E. Papa, Geo Lomuntad, Rebekah Sarabosing",
+      },
       {
         label: "Executive Producers",
         value:
-          "Eduardo Lejano Jr., Liza Diño-Seguerra, Manet Dayrit, Geo Lomuntad, Carl Joseph E. Papa",
+          "Ed Lejano, Manet A. Dayrit, Liza Diño, Carl Joseph E. Papa, Geo Lomuntad",
       },
-      { label: "Editing", value: "Jazmine Gin R. Pateña, Lysa Catolico" },
-      { label: "Sound Design", value: "Nicholai Minion" },
-      { label: "Music", value: "Nicholai Minion" },
     ],
     awards: [
       "QCShorts Grantee and Official Selection, QCinema 2025",
