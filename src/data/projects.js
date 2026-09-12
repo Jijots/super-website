@@ -70,6 +70,7 @@ export const projects = [
       "After eating an offering meant for a grumpy ghost, a reclusive drifter finds himself tackling his odd jobs with an unlikely spirit companion, uncovering family secrets, fiery dangers, and a love that blurs the line between life and afterlife.",
     cover: "/images/projects/patay-gutom/01.jpg",
     stills: Array.from({ length: 7 }, (_, i) => `/images/projects/patay-gutom/${String(i + 1).padStart(2, "0")}.jpg`),
+    trailer: "https://www.youtube.com/watch?v=-PRiCyXUA_A",
     director: "Carl Joseph E. Papa, Ian Pangilinan",
     credits: [
       {
