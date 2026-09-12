@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Suspense, lazy, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -12,7 +12,31 @@ import ProjectDetail from "./pages/ProjectDetail";
 import Services from "./pages/Services";
 import News from "./pages/News";
 
+// Kept out of the main bundle so visitors never download the editor.
+const AdminApp = lazy(() => import("./admin/AdminApp"));
+
 export default function App() {
+  const location = useLocation();
+
+  // The manager is a tool, not a page, so it skips the navbar, footer and
+  // intro splash entirely. Split into its own component so the site's hooks
+  // are never called conditionally.
+  if (location.pathname.startsWith("/admin")) {
+    return (
+      <div className="min-h-screen bg-cream text-ink">
+        <Suspense
+          fallback={<p className="px-6 py-16 text-sm uppercase tracking-wide text-ink/40">Loading...</p>}
+        >
+          <AdminApp />
+        </Suspense>
+      </div>
+    );
+  }
+
+  return <SiteApp />;
+}
+
+function SiteApp() {
   const location = useLocation();
   const [introDone, setIntroDone] = useState(() => location.pathname !== "/");
   const [showSplash, setShowSplash] = useState(() => location.pathname === "/");
