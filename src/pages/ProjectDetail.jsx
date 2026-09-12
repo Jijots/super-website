@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { projects } from "../data/projects";
 import { news } from "../data/news";
 import NewsCarousel from "../components/NewsCarousel";
+import TrailerCard from "../components/TrailerCard";
 
 // Geo asked for the names and companies to carry the weight, with the roles
 // set light above them so the difference is obvious at a glance.
@@ -98,14 +99,11 @@ export default function ProjectDetail() {
 
         <div>
           {project.trailer ? (
-            <a
-              href={project.trailer}
-              target="_blank"
-              rel="noreferrer"
-              className="flex aspect-video items-center justify-center bg-super-red text-sm font-bold uppercase tracking-wide text-paper transition-opacity hover:opacity-90"
-            >
-              Watch the trailer →
-            </a>
+            <TrailerCard
+              url={project.trailer}
+              title={project.title}
+              fallbackImage={project.cover || project.stills[0]}
+            />
           ) : (
             <div className="flex aspect-video items-center justify-center ring-2 ring-super-red/30 text-sm uppercase tracking-wide text-super-red/50">
               Trailer coming soon
