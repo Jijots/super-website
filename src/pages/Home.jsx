@@ -4,21 +4,19 @@ import Marquee from "../components/Marquee";
 import { projects } from "../data/projects";
 import { useInView } from "../hooks/useInView";
 import { useIntroDone } from "../context/IntroContext";
-import HeroLockup from "../components/HeroLockup";
+import HeroShowcase from "../components/HeroShowcase";
 
 export default function Home() {
   const introDone = useIntroDone();
   const [aboutRef, aboutInView] = useInView();
   const [cardsRef, cardsInView] = useInView();
+  const heroFilms = projects.filter((p) => p.cover);
 
   return (
     <>
-      {/* Hero: the lockup sits still long enough to read, then wanders the
-          section like a DVD screensaver, changing to the next palette colour
-          on each wall. It stays put on phones and for reduced-motion. */}
-      <section className="flex items-center px-6 py-10 md:px-10">
-        <HeroLockup introDone={introDone} />
-      </section>
+      {/* Hero: the film stills carry the page, the title sits plainly in the
+          middle, and the small lockup wanders over the top like a DVD logo. */}
+      <HeroShowcase introDone={introDone} films={heroFilms} />
 
       <Marquee />
 

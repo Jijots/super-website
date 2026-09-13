@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { advance } from "./heroBounce";
 
 // Geo's three traced lines, at the offsets that make them interlock the way he
@@ -11,24 +12,31 @@ const LINES = [
 
 const RATIO = 1537 / 828;
 
-// Cycled on every wall hit. All three are already in the palette, so the
-// bounce never drops a colour the rest of the site does not use. Written as
-// whole class names so Tailwind emits them, and so dark mode remaps them for
-// free. An inline var() does not resolve on a descendant here.
-const CYCLE = ["text-super-red", "text-ink", "text-brown"];
+// The lockup now sits over film stills rather than cream, so the cycle uses the
+// palette colours that hold up against a photograph. Whole class names, so
+// Tailwind emits them.
+const CYCLE = ["text-super-red", "text-paper", "text-gold"];
 
-const SIT_FOR = 4200; // Long enough to read the name before it wanders off.
-const SPEED = 46; // px per second, slow enough to stay legible while moving.
-const MIN_WIDTH = 768; // Below this the hero has no room to wander, so it sits.
+const SIT_FOR = 3600; // Long enough to read the name before it wanders off.
+const SPEED = 54; // px per second.
+const MAX_W = 300; // Small, like the real screensaver.
+const MIN_WIDTH = 768; // Below this there is no room to wander, so it sits.
+const FILM_MS = 5600;
 
-export default function HeroLockup({ introDone }) {
+export default function HeroShowcase({ introDone, films }) {
   const stageRef = useRef(null);
   const lockupRef = useRef(null);
   const releaseRef = useRef(null);
-  // React owns className on the lockup, so the colour has to be React state or
-  // the next render strips an imperatively added class. A bounce happens every
-  // few seconds, so re-rendering on one costs nothing.
   const [colourIndex, setColourIndex] = useState(0);
+  const [film, setFilm] = useState(0);
+
+  // Cross-fade the films underneath, independently of the bounce.
+  useEffect(() => {
+    if (films.length < 2) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = setInterval(() => setFilm((f) => (f + 1) % films.length), FILM_MS);
+    return () => clearInterval(id);
+  }, [films.length]);
 
   useEffect(() => {
     const stage = stageRef.current;
@@ -37,32 +45,26 @@ export default function HeroLockup({ introDone }) {
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-    let x = 0;
-    let y = 0;
-    let vx = 1;
-    let vy = 1;
-    let colour = 0;
-    let released = false;
-    let frame = 0;
-    let last = 0;
-    let timer = 0;
+    let x = 0, y = 0, vx = 1, vy = 1, colour = 0;
+    let released = false, frame = 0, last = 0, timer = 0;
 
     function canWander() {
       return !reduced.matches && window.innerWidth >= MIN_WIDTH;
     }
 
     function size() {
-      // Only shrink to leave room to move if it is actually going to move,
-      // otherwise a phone gets a needlessly tiny hero.
-      const w = Math.min(MIN_WIDTH, stage.clientWidth * (canWander() ? 0.62 : 0.94));
+      const w = Math.min(MAX_W, stage.clientWidth * 0.26);
       lockup.style.width = `${w}px`;
       lockup.style.height = `${w / RATIO}px`;
     }
 
+    const TITLE_BAND = 0.3; // Bottom third belongs to the film title.
+
     function limits() {
+      const roam = stage.clientHeight * (1 - TITLE_BAND);
       return {
         maxX: Math.max(0, stage.clientWidth - lockup.offsetWidth),
-        maxY: Math.max(0, stage.clientHeight - lockup.offsetHeight),
+        maxY: Math.max(0, roam - lockup.offsetHeight),
       };
     }
 
@@ -70,10 +72,11 @@ export default function HeroLockup({ introDone }) {
       lockup.style.transform = `translate3d(${Math.round(x)}px, ${Math.round(y)}px, 0)`;
     }
 
-    function centre() {
+    // At rest it sits in the upper third, clear of the film title in the middle.
+    function park() {
       const { maxX, maxY } = limits();
       x = maxX / 2;
-      y = maxY / 2;
+      y = canWander() ? maxY * 0.2 : maxY / 2;
       draw();
     }
 
@@ -92,7 +95,6 @@ export default function HeroLockup({ introDone }) {
       last = now;
       if (!released) return;
 
-      // Nothing to compute while the hero is scrolled past.
       const rect = stage.getBoundingClientRect();
       if (rect.bottom < 0 || rect.top > window.innerHeight) return;
 
@@ -101,8 +103,6 @@ export default function HeroLockup({ introDone }) {
 
       if (next.hitX || next.hitY) {
         setColourIndex(colour);
-        // Both walls in one frame is the corner everybody waits for, so it
-        // gets the same flicker the lockup arrives with.
         if (next.corner) {
           lockup.classList.remove("animate-flicker");
           void lockup.offsetWidth;
@@ -114,7 +114,7 @@ export default function HeroLockup({ introDone }) {
 
     function reset() {
       size();
-      if (!released) centre();
+      if (!released) park();
       else {
         const { maxX, maxY } = limits();
         x = Math.min(x, maxX);
@@ -124,11 +124,8 @@ export default function HeroLockup({ introDone }) {
     }
 
     size();
-    centre();
+    park();
     frame = requestAnimationFrame(step);
-
-    // The lockup should be readable before it goes anywhere, so the timer only
-    // starts once the intro has finished playing.
     if (introDone && canWander()) timer = setTimeout(release, SIT_FOR);
 
     window.addEventListener("resize", reset);
@@ -139,17 +136,56 @@ export default function HeroLockup({ introDone }) {
     };
   }, [introDone]);
 
+  const current = films[film];
+
   return (
     <div
       ref={stageRef}
       onClick={() => releaseRef.current?.()}
-      className="relative h-[70vh] w-full overflow-hidden"
+      className="relative h-[78vh] min-h-[30rem] w-full overflow-hidden bg-ink"
     >
+      {films.map((f, i) => (
+        <img
+          key={f.slug}
+          src={f.cover}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover transition-opacity duration-1000"
+          style={{ opacity: i === film ? 1 : 0 }}
+          loading={i === 0 ? "eager" : "lazy"}
+        />
+      ))}
+
+      {/* Keeps the title and the lockup legible whatever the still is doing. */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/15 to-black/70" />
+
+      {/* The film, named plainly. Geo asked for normal Space Grotesk here, not
+          the display face, so the lettering above stays the loud thing. */}
+      {current && (
+        <div className="absolute inset-x-0 bottom-0 flex justify-center px-6 pb-[8%]">
+          <Link
+            to={`/projects/${current.slug}`}
+            className="group block text-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <span className="block text-xl font-medium text-paper transition-colors group-hover:text-super-red md:text-2xl">
+              {current.title}
+              {current.year ? ` (${current.year})` : ""}
+            </span>
+            {current.director && (
+              <span className="mt-1.5 block text-xs uppercase tracking-[0.18em] text-paper/70">
+                dir. {current.director}
+              </span>
+            )}
+          </Link>
+        </div>
+      )}
+
       <div
         ref={lockupRef}
         aria-label="Create something Super!"
         role="img"
-        className={`absolute left-0 top-0 will-change-transform ${CYCLE[colourIndex]}`}
+        className={`pointer-events-none absolute left-0 top-0 will-change-transform ${CYCLE[colourIndex]}`}
       >
         {LINES.map((line) => (
           <span
