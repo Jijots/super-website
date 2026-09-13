@@ -42,18 +42,43 @@ function Row({ project, index }) {
 export default function Projects() {
   return (
     <section className="px-6 py-16 md:px-10">
-      <h1 className="text-5xl font-bold uppercase tracking-tight text-super-red md:text-7xl">Projects</h1>
+      <h1 className="sr-only">Projects</h1>
 
-      {CATEGORIES.map((cat) => {
+      {CATEGORIES.map((cat, catIndex) => {
         const items = projects.filter((p) => p.category === cat.id);
         if (!items.length) return null;
 
         return (
-          <div key={cat.id} className="mt-12 md:grid md:grid-cols-[9rem_1fr] md:gap-8">
-            <h2 className="text-2xl font-bold uppercase leading-[0.95] tracking-tight text-super-red md:sticky md:top-24 md:self-start md:text-3xl">
-              {cat.label[0]}
-              <br />
-              <span className="text-xl md:text-2xl">{cat.label[1]}</span>
+          <div
+            key={cat.id}
+            className={`md:grid md:grid-cols-[9rem_1fr] md:gap-8 ${catIndex === 0 ? "" : "mt-12"}`}
+          >
+            {/* Geo's own lettering, painted through its alpha as a mask so it
+                takes the theme colour instead of being a flat red picture. */}
+            <h2
+              aria-label={cat.label.join(" ")}
+              className="text-super-red md:sticky md:top-24 md:self-start"
+            >
+              {cat.mask ? (
+                <span
+                  aria-hidden="true"
+                  className="block w-40 max-w-full md:w-full"
+                  style={{
+                    aspectRatio: String(cat.ratio),
+                    backgroundColor: "currentColor",
+                    WebkitMaskImage: `url(${cat.mask})`,
+                    maskImage: `url(${cat.mask})`,
+                    WebkitMaskRepeat: "no-repeat",
+                    maskRepeat: "no-repeat",
+                    WebkitMaskSize: "100% 100%",
+                    maskSize: "100% 100%",
+                  }}
+                />
+              ) : (
+                <span className="block text-2xl font-bold uppercase leading-[0.95] tracking-tight md:text-3xl">
+                  {cat.label.join(" ")}
+                </span>
+              )}
             </h2>
 
             <div className="mt-4 border-t-2 border-super-red md:mt-0">

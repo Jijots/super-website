@@ -5,21 +5,27 @@
       "label": [
         "SUPER",
         "FILMS"
-      ]
+      ],
+      "mask": "/images/headings/super-films.png",
+      "ratio": 1.7957
     },
     {
       "id": "shorts",
       "label": [
         "SUPER",
         "SHORTS"
-      ]
+      ],
+      "mask": "/images/headings/super-shorts.png",
+      "ratio": 2.0068
     },
     {
       "id": "music-videos",
       "label": [
         "SUPER",
         "MUSIC VIDEOS"
-      ]
+      ],
+      "mask": "/images/headings/super-music-videos.png",
+      "ratio": 2.5696
     }
   ],
   "marqueeImages": [
