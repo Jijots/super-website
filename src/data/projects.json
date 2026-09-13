@@ -342,11 +342,22 @@
       "slug": "citys-laundry-and-taxes",
       "category": "shorts",
       "title": "City's Laundry and Taxes",
+      "year": "2025",
       "tag": "Short Film",
+      "runtime": "15 mins",
       "country": "Philippines",
+      "cover": "/images/projects/citys-laundry-and-taxes/01.jpg",
+      "stills": [
+        "/images/projects/citys-laundry-and-taxes/01.jpg",
+        "/images/projects/citys-laundry-and-taxes/02.jpg",
+        "/images/projects/citys-laundry-and-taxes/03.jpg",
+        "/images/projects/citys-laundry-and-taxes/04.jpg",
+        "/images/projects/citys-laundry-and-taxes/05.jpg",
+        "/images/projects/citys-laundry-and-taxes/06.jpg",
+        "/images/projects/citys-laundry-and-taxes/07.jpg"
+      ],
+      "poster": "/images/projects/citys-laundry-and-taxes/poster.jpg",
       "director": "Diana Galang",
-      "cover": null,
-      "stills": [],
       "credits": [
         {
           "label": "Production Companies",
@@ -403,8 +414,7 @@
         "Official Selection, 8th SineKabataan Film Festival (Philippines)",
         "Official Selection, PeliKultura: CALABARZON Film Festival (Philippines)",
         "Official Selection, 13th Nabunturan Independent Film Exhibition (Philippines)"
-      ],
-      "pending": true
+      ]
     },
     {
       "slug": "malayo-mv",
