@@ -111,14 +111,13 @@ export default function Company() {
       <h2 className="mt-20 px-6 text-3xl font-bold uppercase tracking-tight text-super-red md:px-10 md:text-5xl">
         Collaborators
       </h2>
+      {/* Geo asked for these to behave like his own card: tap to flip to the bio. */}
       {collaborators.length > 0 ? (
-        <ul className="mt-6 mx-6 divide-y divide-super-red/30 border-y border-super-red/30 md:mx-10">
+        <div className="mt-8 grid gap-6 px-6 sm:grid-cols-2 md:px-10 lg:grid-cols-3">
           {collaborators.map((c) => (
-            <li key={c.name} className="py-4 text-lg">
-              {c.name}
-            </li>
+            <TeamCard key={c.slug} member={c} />
           ))}
-        </ul>
+        </div>
       ) : (
         <p className="mt-4 px-6 text-sm uppercase tracking-wide text-ink/40 md:px-10">
           Collaborator list coming soon

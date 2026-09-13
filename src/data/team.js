@@ -35,8 +35,33 @@ export const team = [
   },
 ];
 
-// Geo is sending the second team member plus the collaborator list and bios.
-export const collaborators = [];
+// Collaborators use the same card as the team, so tapping one turns it over to
+// the bio. Bios are verbatim from the documents Geo supplied. Lysa's bio uses
+// they/them, which is kept exactly as written.
+export const collaborators = [
+  {
+    slug: "lysa-catolico",
+    name: "Lysa Catolico",
+    role: "Writer / Director, Runo!",
+    photos: ["/images/company/lysa-01.jpg"],
+    bio: [
+      "Lysa Catolico is BS Animation student based from Quezon City, Philippines pursuing a career in animation production and art direction. They have volunteered as an animator in multiple student films, and had their first directed short film (along with Jazmine Gin R. Pateña) “RUNO!” officially screened in the QCinema QCShorts Program 2025, Los Angeles Asia Pacific Film Festival, and Cinemalaya 2026, which won best Screenplay for Short Film Category.",
+      "Their goal is to create and produce local animated stories relating to their personal struggles and passions in the hopes that other fellow Filipinos can find inspiration in them. Currently, they are working as an associate producer under another Clister Santos’ “Sana’y Nandito Ka”, one of the grantees for QCShorts Program 2026.",
+    ],
+  },
+  {
+    slug: "jazmine-gin-patena",
+    name: "Jazmine Gin R. Pateña",
+    role: "Writer / Director, Runo!",
+    // Awaiting a photo from Geo; the card shows a placeholder until then.
+    photos: [],
+    bio: [
+      "Jazmine Gin R. Pateña hails from a small village in Laguna, where she knew her dreams for storytelling run deep and big. She is currently majoring BS in Animation and a mentee of VISION Creative Unit in iACADEMY, where her love for animation and films prospered.",
+      "From being a semi-finalist in SIKAP’s SAPLING Pitch Lab to winning a grant of QCShorts 2025 along with her director, Lysa Catolico, where they made their first-ever short film, “RUNO!”. They also won Best Screenplay from Cinemalaya 22: Reel Reflections and have been nominated for the 49th Gawad Urian as Best Short Film.",
+      "Jazmine’s currently residing in Makati with her family and her cat, honing her craft for storytelling.",
+    ],
+  },
+];
 
 export const companyIntro = "Super! is a Filipino production company.";
 
