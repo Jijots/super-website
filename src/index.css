@@ -165,3 +165,20 @@ body {
 html {
   background-color: var(--color-cream);
 }
+
+/* The bio side of a team card should not show a chunky native scrollbar over
+   the red. It normally fits; this keeps the rare overflow tidy. */
+.bio-face {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(243, 235, 224, 0.5) transparent;
+}
+.bio-face::-webkit-scrollbar {
+  width: 6px;
+}
+.bio-face::-webkit-scrollbar-track {
+  background: transparent;
+}
+.bio-face::-webkit-scrollbar-thumb {
+  background-color: rgba(243, 235, 224, 0.5);
+  border-radius: 3px;
+}

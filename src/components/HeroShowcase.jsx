@@ -12,10 +12,20 @@ const LINES = [
 
 const RATIO = 1537 / 828;
 
-// The lockup now sits over film stills rather than cream, so the cycle uses the
-// palette colours that hold up against a photograph. Whole class names, so
-// Tailwind emits them.
-const CYCLE = ["text-super-red", "text-paper", "text-gold"];
+// The full arcade set Geo picked, in his order. These are applied as an inline
+// colour rather than Tailwind classes because they live outside the site
+// palette, and the children paint themselves with currentColor.
+const CYCLE = [
+  "#F43837", // the house red, so it still starts on brand
+  "#EFB8E7", // pink
+  "#1B15D6", // blue
+  "#16F03F", // green
+  "#F7F219", // yellow
+  "#F5801A", // orange
+  "#18B5EF", // sky
+  "#A31FE4", // purple
+  "#F5209C", // magenta
+];
 
 const SIT_FOR = 3600; // Long enough to read the name before it wanders off.
 const SPEED = 54; // px per second.
@@ -98,7 +108,7 @@ export default function HeroShowcase({ introDone, films }) {
       const rect = stage.getBoundingClientRect();
       if (rect.bottom < 0 || rect.top > window.innerHeight) return;
 
-      const next = advance({ x, y, vx, vy, colour }, dt, limits(), SPEED);
+      const next = advance({ x, y, vx, vy, colour }, dt, limits(), SPEED, CYCLE.length);
       ({ x, y, vx, vy, colour } = next);
 
       if (next.hitX || next.hitY) {
@@ -185,7 +195,8 @@ export default function HeroShowcase({ introDone, films }) {
         ref={lockupRef}
         aria-label="Create something Super!"
         role="img"
-        className={`pointer-events-none absolute left-0 top-0 will-change-transform ${CYCLE[colourIndex]}`}
+        style={{ color: CYCLE[colourIndex] }}
+        className="pointer-events-none absolute left-0 top-0 will-change-transform"
       >
         {LINES.map((line) => (
           <span

@@ -2,7 +2,7 @@
 // without a browser. The preview pane never runs requestAnimationFrame, so
 // this is the only way to actually check the corner case works.
 
-export const CYCLE_LENGTH = 3;
+export const CYCLE_LENGTH = 3; // default when a caller does not say
 
 /**
  * Advance one frame.
@@ -12,7 +12,7 @@ export const CYCLE_LENGTH = 3;
  * @param {number} speed pixels per second
  * @returns {{x,y,vx,vy,colour, hitX:boolean, hitY:boolean, corner:boolean}}
  */
-export function advance(state, dt, bounds, speed) {
+export function advance(state, dt, bounds, speed, cycleLength = CYCLE_LENGTH) {
   let { x, y, vx, vy, colour } = state;
   const { maxX, maxY } = bounds;
 
@@ -44,7 +44,7 @@ export function advance(state, dt, bounds, speed) {
 
   // One colour step per bounce, not one per wall, so hitting a corner does not
   // skip a colour.
-  if (hitX || hitY) colour = (colour + 1) % CYCLE_LENGTH;
+  if (hitX || hitY) colour = (colour + 1) % cycleLength;
 
   return { x, y, vx, vy, colour, hitX, hitY, corner: hitX && hitY };
 }

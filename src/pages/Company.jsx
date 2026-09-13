@@ -30,7 +30,7 @@ function TeamCard({ member }) {
         onBlur={() => setPaused(false)}
         aria-expanded={flipped}
         aria-label={`${flipped ? "Hide" : "Read"} bio for ${member.name}`}
-        className="group relative block h-[30rem] w-full text-left transition-transform duration-700 [transform-style:preserve-3d]"
+        className="group relative block h-[36rem] w-full text-left transition-transform duration-700 [transform-style:preserve-3d]"
         style={{ transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)" }}
       >
         {/* front: the photos */}
@@ -63,15 +63,15 @@ function TeamCard({ member }) {
         </div>
 
         {/* back: the bio */}
-        <div className="absolute inset-0 overflow-y-auto bg-super-red p-6 [backface-visibility:hidden] [transform:rotateY(180deg)]">
-          <p className="text-xl font-bold text-paper">{member.name}</p>
+        <div className="bio-face absolute inset-0 overflow-y-auto bg-super-red p-5 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+          <p className="text-lg font-bold text-paper">{member.name}</p>
           <p className="mt-1 text-xs uppercase tracking-wide text-paper/70">{member.role}</p>
-          <div className="mt-4 space-y-3 text-sm leading-relaxed text-paper/90">
+          <div className="mt-3 space-y-2.5 text-[0.8125rem] leading-[1.55] text-paper/90">
             {member.bio.map((para) => (
               <p key={para.slice(0, 32)}>{para}</p>
             ))}
           </div>
-          <span className="mt-6 inline-block text-xs font-bold uppercase tracking-wide text-paper/70">
+          <span className="mt-5 inline-block text-xs font-bold uppercase tracking-wide text-paper/70">
             ← Tap to go back
           </span>
         </div>
