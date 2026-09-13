@@ -4,6 +4,7 @@ import Marquee from "../components/Marquee";
 import { projects } from "../data/projects";
 import { useInView } from "../hooks/useInView";
 import { useIntroDone } from "../context/IntroContext";
+import HeroLockup from "../components/HeroLockup";
 
 export default function Home() {
   const introDone = useIntroDone();
@@ -12,43 +13,11 @@ export default function Home() {
 
   return (
     <>
-      {/* Hero: each line traced from Geo's artboard and placed at its original
-          position, so the lines interlock the way he drew them rather than
-          stacking with gaps. Drawn as masks so they take the theme colour. */}
-      <section className="flex min-h-[80vh] items-center px-6 py-20 md:px-10">
-        <div className="mx-auto w-full max-w-3xl">
-          <h1
-            aria-label="Create something Super!"
-            className="relative block w-full text-super-red"
-            style={{ aspectRatio: "1537 / 828" }}
-          >
-            {[
-              { src: "line-create", left: "0.33%", top: "0%", w: "99.67%", h: "25.48%", delay: 0 },
-              { src: "line-something", left: "0.07%", top: "18.12%", w: "99.80%", h: "44.93%", delay: 260 },
-              { src: "line-super", left: "0%", top: "66.55%", w: "99.61%", h: "33.45%", delay: 520 },
-            ].map((line) => (
-              <span
-                key={line.src}
-                aria-hidden="true"
-                className={`absolute block ${introDone ? "animate-flicker" : "opacity-0"}`}
-                style={{
-                  left: line.left,
-                  top: line.top,
-                  width: line.w,
-                  height: line.h,
-                  backgroundColor: "currentColor",
-                  WebkitMaskImage: `url(/images/hero/${line.src}.svg)`,
-                  maskImage: `url(/images/hero/${line.src}.svg)`,
-                  WebkitMaskRepeat: "no-repeat",
-                  maskRepeat: "no-repeat",
-                  WebkitMaskSize: "100% 100%",
-                  maskSize: "100% 100%",
-                  animationDelay: `${line.delay}ms`,
-                }}
-              />
-            ))}
-          </h1>
-        </div>
+      {/* Hero: the lockup sits still long enough to read, then wanders the
+          section like a DVD screensaver, changing to the next palette colour
+          on each wall. It stays put on phones and for reduced-motion. */}
+      <section className="flex items-center px-6 py-10 md:px-10">
+        <HeroLockup introDone={introDone} />
       </section>
 
       <Marquee />
