@@ -5,6 +5,7 @@ import { projects } from "../data/projects";
 import { useInView } from "../hooks/useInView";
 import { useIntroDone } from "../context/IntroContext";
 import HeroShowcase from "../components/HeroShowcase";
+import DvdLogo from "../components/DvdLogo";
 
 export default function Home() {
   const introDone = useIntroDone();
@@ -16,7 +17,8 @@ export default function Home() {
     <>
       {/* Hero: the film stills carry the page, the title sits plainly in the
           middle, and the small lockup wanders over the top like a DVD logo. */}
-      <HeroShowcase introDone={introDone} films={heroFilms} />
+      {introDone && <DvdLogo />}
+      <HeroShowcase films={heroFilms} />
 
       <Marquee />
 
