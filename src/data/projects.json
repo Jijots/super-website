@@ -267,14 +267,74 @@
       "title": "Surface Tension",
       "year": "2025",
       "tag": "QCinema 2025",
+      "runtime": "17 mins",
       "country": "Philippines",
-      "director": "Serrano Sisters",
-      "cover": null,
-      "stills": [],
-      "awards": [
-        "Best Short Film, QCinema International Film Festival 2025"
+      "logline": "A competitive swimmer finds herself drowning on the day of a small-town wedding.",
+      "cover": "/images/projects/surface-tension/01.jpg",
+      "stills": [
+        "/images/projects/surface-tension/01.jpg",
+        "/images/projects/surface-tension/02.jpg",
+        "/images/projects/surface-tension/03.jpg",
+        "/images/projects/surface-tension/04.jpg",
+        "/images/projects/surface-tension/05.jpg"
       ],
-      "pending": true
+      "poster": "/images/projects/surface-tension/poster.jpg",
+      "director": "The Serrano Sisters",
+      "credits": [
+        {
+          "label": "Production Companies",
+          "value": "Studio Dalaga, Super! Entertainment, Lunari Global"
+        },
+        {
+          "label": "Directors",
+          "value": "The Serrano Sisters"
+        },
+        {
+          "label": "Cast",
+          "value": "Mariana Serrano, Giro Alva, Audrey Alquiroz, Carla Zarcal, Mina Laviña, Jayne Resurreccion Janeo Serrano"
+        },
+        {
+          "label": "Producers",
+          "value": "Gabriela Serrano, Mariana Serrano"
+        },
+        {
+          "label": "Co-Producers",
+          "value": "Carlos Sison, CMB Film Services Inc., Narra Post Production Studios by Wildsound, Quezon City Film Commission"
+        },
+        {
+          "label": "Executive Producers",
+          "value": "Carl Joseph E. Papa, Gabie Tanjutco, Jayne Resurreccion Janeo Serrano, Mario Serrano, Hannah Pangilinan, Eduardo Lejano Jr., Manet Dayrit, Liza Diño-Seguerra"
+        },
+        {
+          "label": "Director of Cinematography",
+          "value": "Aaron Marasigan, Tey Clamor"
+        },
+        {
+          "label": "Production Designer",
+          "value": "Kukay Bautista Zinampan"
+        },
+        {
+          "label": "Editor",
+          "value": "Gabriela Serrano"
+        },
+        {
+          "label": "Sound Designer",
+          "value": "Nicole Rosacay"
+        },
+        {
+          "label": "Musical Scorers",
+          "value": "Bryn Chainey, Marty Carsi Cruz, Rome Gomez"
+        }
+      ],
+      "awards": [
+        "Best Short Film, QCShorts Lokal, QCinema International Film Festival 2025",
+        "Seoul International Women's Film Festival",
+        "CinemAsia Film Festival"
+      ],
+      "pullQuote": {
+        "tagalog": "Parang tayo lang noong bata tayo.",
+        "english": "Look, it's us when we were young."
+      }
     },
     {
       "slug": "ours-was-a-timeless-night-burning",
