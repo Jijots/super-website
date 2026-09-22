@@ -28,16 +28,6 @@
       "ratio": 2.5696
     }
   ],
-  "marqueeImages": [
-    "/images/projects/2-valid-ids/03.jpg",
-    "/images/projects/patay-gutom/01.jpg",
-    "/images/projects/runo/01.jpg",
-    "/images/projects/2-valid-ids/07.jpg",
-    "/images/projects/patay-gutom/04.jpg",
-    "/images/projects/runo/07.jpg",
-    "/images/projects/2-valid-ids/05.jpg",
-    "/images/projects/patay-gutom/06.jpg"
-  ],
   "projects": [
     {
       "slug": "2-valid-ids",

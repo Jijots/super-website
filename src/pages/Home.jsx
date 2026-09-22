@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { SERVICES } from "../data/services";
-import Marquee from "../components/Marquee";
 import { projects } from "../data/projects";
 import { useInView } from "../hooks/useInView";
 import { useIntroDone } from "../context/IntroContext";
@@ -19,8 +18,6 @@ export default function Home() {
           middle, and the small lockup wanders over the top like a DVD logo. */}
       {introDone && <DvdLogo />}
       <HeroShowcase films={heroFilms} />
-
-      <Marquee />
 
       {/* About Section */}
       <section className="grid gap-10 overflow-x-hidden px-6 py-24 md:grid-cols-2 md:gap-16 md:px-10 md:py-32">

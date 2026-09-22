@@ -5,4 +5,3 @@ import data from "./projects.json";
 
 export const CATEGORIES = data.categories;
 export const projects = data.projects;
-export const marqueeImages = data.marqueeImages;

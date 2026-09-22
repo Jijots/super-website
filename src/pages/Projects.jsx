@@ -62,7 +62,7 @@ export default function Projects() {
               {cat.mask ? (
                 <span
                   aria-hidden="true"
-                  className="block w-40 max-w-full md:w-full"
+                  className="block w-32 max-w-full md:w-[80%]"
                   style={{
                     aspectRatio: String(cat.ratio),
                     backgroundColor: "currentColor",
