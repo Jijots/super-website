@@ -7,10 +7,7 @@ export const team = [
     photos: [
       "/images/company/geo-01.jpg",
       "/images/company/geo-03.jpg",
-      "/images/company/geo-02.jpg",
       "/images/company/geo-04.jpg",
-      "/images/company/geo-06.jpg",
-      "/images/company/geo-05.jpg",
     ],
     bio: [
       "Geo Lomuntad is a director and producer based in Manila, Philippines. He began his film career as a script supervisor before working closely with acclaimed producer Bianca Balbuena as associate producer on Fan Girl, which premiered at Tallinn Black Nights Film Festival in 2020.",
@@ -47,6 +44,17 @@ export const collaborators = [
     bio: [
       "Lysa Catolico is BS Animation student based from Quezon City, Philippines pursuing a career in animation production and art direction. They have volunteered as an animator in multiple student films, and had their first directed short film (along with Jazmine Gin R. Pateña) “RUNO!” officially screened in the QCinema QCShorts Program 2025, Los Angeles Asia Pacific Film Festival, and Cinemalaya 2026, which won best Screenplay for Short Film Category.",
       "Their goal is to create and produce local animated stories relating to their personal struggles and passions in the hopes that other fellow Filipinos can find inspiration in them. Currently, they are working as an associate producer under another Clister Santos’ “Sana’y Nandito Ka”, one of the grantees for QCShorts Program 2026.",
+    ],
+  },
+  {
+    slug: "maan-asuncion-dagnalan",
+    name: "Ma-an L. Asuncion-Dagñalan",
+    role: "Director / Writer",
+    // Awaiting a photo from Geo; the card shows a placeholder until then.
+    photos: [],
+    bio: [
+      "Ma-an L. Asuncion-Dagñalan is an award-winning filmmaker recognized for her acclaimed feature Blue Room, which won Best Foreign Film at the 2023 LA Femme International Film Festival. She took home Best Director honors at both the 2022 Cinemalaya Film Festival and the 2023 FAMAS Awards.",
+      "Trained under National Artist for Film Ricky Lee, Ma-an currently serves as the Board Secretary of the Directors Guild of the Philippines (DGPI) and is a core member of the Filipino Screenwriters Guild (FSG).",
     ],
   },
   {

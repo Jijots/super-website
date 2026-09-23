@@ -105,7 +105,8 @@
       "pullQuote": {
         "tagalog": "KAYA KA NGA KUKUHA NG ID DAHIL WALANG KANG ID, TAPOS HAHANAPAN KA NG ID? EH, KANINO BANG IDEA 'TO!?",
         "english": "You're there to get an ID because you don't have one, then they ask you for an ID? Whose idea was this?"
-      }
+      },
+      "trailer": "https://web.facebook.com/reel/1565517448078532"
     },
     {
       "slug": "patay-gutom",
@@ -249,7 +250,8 @@
         "Short Film Finalist and Best Screenplay, Cinemalaya 2026",
         "Best Short Film Nominee, 49th Gawad Urian 2026",
         "Official Selection, Sydney Sci-Fi Film Festival 2026"
-      ]
+      ],
+      "poster": "/images/projects/runo/poster.jpg"
     },
     {
       "slug": "surface-tension",
@@ -394,7 +396,7 @@
       "title": "City's Laundry and Taxes",
       "year": "2025",
       "tag": "Short Film",
-      "runtime": "15 mins",
+      "runtime": "19 mins",
       "country": "Philippines",
       "cover": "/images/projects/citys-laundry-and-taxes/01.jpg",
       "stills": [
@@ -464,17 +466,89 @@
         "Official Selection, 8th SineKabataan Film Festival (Philippines)",
         "Official Selection, PeliKultura: CALABARZON Film Festival (Philippines)",
         "Official Selection, 13th Nabunturan Independent Film Exhibition (Philippines)"
-      ]
+      ],
+      "logline": "In a small town outside of Manila in 2017, a laundromat owner’s son finds his missing classmate’s ID in a policeman’s dirty laundry."
     },
     {
       "slug": "malayo-mv",
       "category": "music-videos",
       "title": "Malayo",
+      "year": "2025",
       "tag": "Music Video",
+      "runtime": "4 mins",
       "country": "Philippines",
-      "cover": null,
-      "stills": [],
-      "pending": true
+      "cover": "/images/projects/malayo-mv/01.jpg",
+      "stills": [
+        "/images/projects/malayo-mv/01.jpg",
+        "/images/projects/malayo-mv/02.jpg",
+        "/images/projects/malayo-mv/03.jpg",
+        "/images/projects/malayo-mv/04.jpg",
+        "/images/projects/malayo-mv/05.jpg"
+      ],
+      "trailer": "https://www.youtube.com/watch?v=wee3sVFmFwk",
+      "director": "Geo Lomuntad",
+      "credits": [
+        {
+          "label": "Production Companies",
+          "value": "O/C Records, Super! Entertainment"
+        },
+        {
+          "label": "Director / Editor",
+          "value": "Geo Lomuntad"
+        },
+        {
+          "label": "Executive Producers",
+          "value": "Kean Cipriano, Vicente Del Rosario Jr., Verb Del Rosario, Chynna Ortaleza Cipriano"
+        },
+        {
+          "label": "Creative Producer",
+          "value": "Natts Jadaone"
+        },
+        {
+          "label": "Line Producer",
+          "value": "Ma. Sarah Perez"
+        },
+        {
+          "label": "Location Manager",
+          "value": "Angel Tomas"
+        },
+        {
+          "label": "Assistant Director",
+          "value": "Elton James Quijano"
+        },
+        {
+          "label": "Director of Photography",
+          "value": "Wence Trajano"
+        },
+        {
+          "label": "Gaffer",
+          "value": "Jerald Escinas"
+        },
+        {
+          "label": "Production Designer / Stylist",
+          "value": "Kim Perez"
+        },
+        {
+          "label": "Art Director",
+          "value": "Jossam Dalman"
+        },
+        {
+          "label": "Art Department",
+          "value": "Aldrinn Anacta, Adrian De Vera"
+        },
+        {
+          "label": "Glam",
+          "value": "Dominic Mangat, Julia Laplana, Kim Roy Opog, Windenoyo, Trix Dizon"
+        },
+        {
+          "label": "Colorist",
+          "value": "Johmar Damiles"
+        },
+        {
+          "label": "Animator",
+          "value": "Von Aldous Gungab"
+        }
+      ]
     }
   ]
 }
