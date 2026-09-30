@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { contactEmail, contactLabel, socials } from "../data/site";
 
 const LINKS = [
   { to: "/", label: "Home" },
@@ -8,22 +9,16 @@ const LINKS = [
   { to: "/news", label: "News" },
 ];
 
-const SOCIALS = [
-  { label: "Instagram", href: "https://www.instagram.com/_super_ent/" },
-  { label: "Facebook", href: "https://www.facebook.com/share/1GMq1PUNon/?mibextid=wwXIfr" },
-  { label: "TikTok", href: "https://vt.tiktok.com/ZSXFLMXF2/" },
-];
-
 export default function Footer() {
   return (
     <footer className="border-t-2 border-brown/30 px-6 pb-10 pt-16 md:px-10">
       <div className="flex flex-col items-start gap-2">
-        <span className="text-sm uppercase tracking-wide text-ink/50">Let's work together</span>
+        <span className="text-sm uppercase tracking-wide text-ink/50">{contactLabel}</span>
         <a
-          href="mailto:hello@super.ph"
+          href={`mailto:${contactEmail}`}
           className="text-4xl font-bold text-super-red underline decoration-2 underline-offset-4 transition-colors hover:text-gold md:text-6xl"
         >
-          hello@super.ph →
+          {contactEmail} →
         </a>
       </div>
 
@@ -37,7 +32,7 @@ export default function Footer() {
         </nav>
 
         <div className="flex flex-wrap gap-6 text-ink/50">
-          {SOCIALS.map((s) => (
+          {socials.map((s) => (
             <a
               key={s.label}
               href={s.href}

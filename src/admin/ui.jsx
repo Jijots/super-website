@@ -15,12 +15,12 @@ export function Field({ label, hint, children }) {
 const inputClass =
   "w-full border-2 border-ink/15 bg-cream px-3 py-2 text-sm text-ink outline-none transition-colors focus:border-super-red";
 
-export function Input(props) {
-  return <input {...props} className={inputClass} />;
+export function Input({ className = "", ...props }) {
+  return <input {...props} className={`${inputClass} ${className}`} />;
 }
 
-export function Textarea({ rows = 3, ...props }) {
-  return <textarea rows={rows} {...props} className={`${inputClass} resize-y`} />;
+export function Textarea({ rows = 3, className = "", ...props }) {
+  return <textarea rows={rows} {...props} className={`${inputClass} resize-y ${className}`} />;
 }
 
 export function Select({ children, ...props }) {

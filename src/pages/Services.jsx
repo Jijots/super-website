@@ -19,12 +19,10 @@ export default function Services() {
             <h2 className="text-2xl font-bold uppercase leading-tight tracking-tight text-super-red md:text-3xl">
               {service.title}
             </h2>
-            {service.blurb ? (
+            {/* No placeholder when there is no copy yet: three named services
+                read as deliberate, "copy coming soon" reads as unfinished. */}
+            {service.blurb && (
               <p className="mt-4 text-base text-ink/70 md:text-lg">{service.blurb}</p>
-            ) : (
-              <p className="mt-4 text-sm uppercase tracking-wide text-ink/40">
-                Copy coming soon
-              </p>
             )}
           </div>
         ))}

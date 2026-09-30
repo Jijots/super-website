@@ -1,0 +1,19 @@
+{
+  "services": [
+    {
+      "id": "creative-development",
+      "title": "Creative Development",
+      "blurb": null
+    },
+    {
+      "id": "online",
+      "title": "Online",
+      "blurb": null
+    },
+    {
+      "id": "production-services",
+      "title": "Production Services",
+      "blurb": null
+    }
+  ]
+}

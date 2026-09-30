@@ -2,10 +2,20 @@ import { useEffect, useState } from "react";
 import { commitFiles, getToken, readJson, setToken, textToBase64, verifyAccess } from "./github";
 import ProjectEditor from "./ProjectEditor";
 import NewsEditor from "./NewsEditor";
+import ServicesEditor from "./ServicesEditor";
+import PeopleEditor from "./PeopleEditor";
+import SiteEditor from "./SiteEditor";
 import { Button } from "./ui";
 
-const PROJECTS_PATH = "src/data/projects.json";
-const NEWS_PATH = "src/data/news.json";
+// Everything Geo can edit. Adding a section here and a case in the switch
+// below is all it takes to put another part of the site under his control.
+const DOCS = [
+  { key: "projects", label: "Projects", path: "src/data/projects.json" },
+  { key: "news", label: "News", path: "src/data/news.json" },
+  { key: "services", label: "Services", path: "src/data/services.json" },
+  { key: "people", label: "People", path: "src/data/team.json" },
+  { key: "site", label: "Contact & Logos", path: "src/data/site.json" },
+];
 
 const KEY_URL =
   "https://github.com/settings/personal-access-tokens/new";
@@ -81,11 +91,10 @@ export default function AdminApp() {
   const [ready, setReady] = useState(false);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
-  const [tab, setTab] = useState("projects");
+  const [tab, setTab] = useState(DOCS[0].key);
 
-  const [projectsDoc, setProjectsDoc] = useState(null);
-  const [newsDoc, setNewsDoc] = useState(null);
-  const [dirty, setDirty] = useState({ projects: false, news: false });
+  const [docs, setDocs] = useState({});
+  const [dirty, setDirty] = useState({});
   const [staged, setStaged] = useState([]);
 
   const [publishing, setPublishing] = useState(false);
@@ -105,17 +114,16 @@ export default function AdminApp() {
   useEffect(() => {
     if (!ready) return;
     setLoading(true);
-    Promise.all([readJson(PROJECTS_PATH), readJson(NEWS_PATH)])
-      .then(([p, n]) => {
-        setProjectsDoc(p);
-        setNewsDoc(n);
+    Promise.all(DOCS.map((d) => readJson(d.path)))
+      .then((loaded) => {
+        setDocs(Object.fromEntries(DOCS.map((d, i) => [d.key, loaded[i]])));
         setLoadError("");
       })
       .catch((e) => setLoadError(e.message))
       .finally(() => setLoading(false));
   }, [ready]);
 
-  const hasChanges = dirty.projects || dirty.news || staged.length > 0;
+  const hasChanges = Object.values(dirty).some(Boolean) || staged.length > 0;
 
   // Leaving with unsaved work would silently lose it, and this tool is used by
   // someone who has no other copy of what they just typed.
@@ -139,30 +147,23 @@ export default function AdminApp() {
     setStatus("Saving...");
     try {
       const files = [...staged];
-      if (dirty.projects) {
+      const changed = DOCS.filter((d) => dirty[d.key]);
+      for (const d of changed) {
         files.push({
-          path: PROJECTS_PATH,
-          content: textToBase64(`${JSON.stringify(projectsDoc, null, 2)}\n`),
-          encoding: "base64",
-        });
-      }
-      if (dirty.news) {
-        files.push({
-          path: NEWS_PATH,
-          content: textToBase64(`${JSON.stringify(newsDoc, null, 2)}\n`),
+          path: d.path,
+          content: textToBase64(`${JSON.stringify(docs[d.key], null, 2)}
+`),
           encoding: "base64",
         });
       }
 
-      const parts = [];
-      if (dirty.projects) parts.push("projects");
-      if (dirty.news) parts.push("news");
+      const parts = changed.map((d) => d.label.toLowerCase());
       if (staged.length) parts.push(`${staged.length} image${staged.length > 1 ? "s" : ""}`);
 
-      await commitFiles(files, `Update ${parts.join(" and ")} from the site manager`);
+      await commitFiles(files, `Update ${parts.join(", ")} from the site manager`);
 
       setStaged([]);
-      setDirty({ projects: false, news: false });
+      setDirty({});
       setStatus("Saved. The website updates in about a minute.");
     } catch (e) {
       setStatus(`Could not save: ${e.message}`);
@@ -210,46 +211,47 @@ export default function AdminApp() {
         </Button>
       </header>
 
-      <nav className="mt-6 flex gap-2">
-        {[
-          ["projects", `Projects${dirty.projects ? " *" : ""}`],
-          ["news", `News${dirty.news ? " *" : ""}`],
-        ].map(([id, label]) => (
+      <nav className="mt-6 flex flex-wrap gap-2">
+        {DOCS.map((d) => (
           <button
-            key={id}
+            key={d.key}
             type="button"
-            onClick={() => setTab(id)}
+            onClick={() => setTab(d.key)}
             className={`px-4 py-2 text-xs font-bold uppercase tracking-wide transition-colors ${
-              tab === id ? "bg-super-red text-paper" : "border-2 border-ink/15 text-ink/60 hover:border-ink/40"
+              tab === d.key ? "bg-super-red text-paper" : "border-2 border-ink/15 text-ink/60 hover:border-ink/40"
             }`}
           >
-            {label}
+            {d.label}
+            {dirty[d.key] ? " *" : ""}
           </button>
         ))}
       </nav>
 
       <div className="mt-6">
-        {tab === "projects" && projectsDoc && (
-          <ProjectEditor
-            doc={projectsDoc}
-            categories={projectsDoc.categories}
-            onChange={(next) => {
-              setProjectsDoc(next);
-              setDirty((d) => ({ ...d, projects: true }));
-            }}
-            onStageFile={stageFile}
-          />
-        )}
-        {tab === "news" && newsDoc && (
-          <NewsEditor
-            doc={newsDoc}
-            projects={projectsDoc?.projects ?? []}
-            onChange={(next) => {
-              setNewsDoc(next);
-              setDirty((d) => ({ ...d, news: true }));
-            }}
-          />
-        )}
+        {(() => {
+          const doc = docs[tab];
+          if (!doc) return null;
+          const onChange = (next) => {
+            setDocs((all) => ({ ...all, [tab]: next }));
+            setDirty((d) => ({ ...d, [tab]: true }));
+          };
+          switch (tab) {
+            case "projects":
+              return (
+                <ProjectEditor doc={doc} categories={doc.categories} onChange={onChange} onStageFile={stageFile} />
+              );
+            case "news":
+              return <NewsEditor doc={doc} projects={docs.projects?.projects ?? []} onChange={onChange} />;
+            case "services":
+              return <ServicesEditor doc={doc} onChange={onChange} />;
+            case "people":
+              return <PeopleEditor doc={doc} onChange={onChange} onStageFile={stageFile} />;
+            case "site":
+              return <SiteEditor doc={doc} onChange={onChange} onStageFile={stageFile} />;
+            default:
+              return null;
+          }
+        })()}
       </div>
 
       {/* Sticky so the way to save is always visible, however far down the

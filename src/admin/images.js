@@ -22,14 +22,22 @@ function loadImage(file) {
 }
 
 /**
- * Resize to a target width and return base64 JPEG, no data URL prefix.
- * Images already narrower than the target are left at their own width rather
- * than being upscaled into mush.
+ * Resize and return base64 JPEG, no data URL prefix. Capped by width for
+ * stills and logos, by height for portraits, which otherwise come out tiny
+ * when they are tall and narrow. Images already smaller than the cap keep
+ * their own size rather than being upscaled into mush.
  */
-export async function processImage(file, targetWidth) {
+export async function processImage(file, target, by = "width") {
   const img = await loadImage(file);
-  const width = Math.min(targetWidth, img.naturalWidth);
-  const height = Math.round((img.naturalHeight * width) / img.naturalWidth);
+  let width;
+  let height;
+  if (by === "height") {
+    height = Math.min(target, img.naturalHeight);
+    width = Math.round((img.naturalWidth * height) / img.naturalHeight);
+  } else {
+    width = Math.min(target, img.naturalWidth);
+    height = Math.round((img.naturalHeight * width) / img.naturalWidth);
+  }
 
   const canvas = document.createElement("canvas");
   canvas.width = width;
