@@ -12,6 +12,15 @@ dist
 dist-ssr
 *.local
 
+# Environment and credentials. *.local alone only caught .env.local, which
+# left .env and its siblings committable by accident.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

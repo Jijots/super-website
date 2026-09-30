@@ -9,9 +9,36 @@ const API = "https://api.github.com";
 
 const TOKEN_KEY = "super-admin-token";
 
+// The key has to be remembered between visits or this is unusable for the
+// person it was built for, and with no server there is nowhere safer than the
+// browser to keep it. So it is bounded instead: it stops working after a month
+// and has to be pasted again. A key that leaks is then useful for weeks rather
+// than forever, and revoking it on GitHub kills it immediately either way.
+const MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000;
+
 export function getToken() {
   try {
-    return localStorage.getItem(TOKEN_KEY) || "";
+    const raw = localStorage.getItem(TOKEN_KEY);
+    if (!raw) return "";
+
+    // Anything that is not the stored shape is from an older version; drop it
+    // rather than trying to keep using it.
+    let saved;
+    try {
+      saved = JSON.parse(raw);
+    } catch {
+      localStorage.removeItem(TOKEN_KEY);
+      return "";
+    }
+    if (!saved?.token || !saved?.savedAt) {
+      localStorage.removeItem(TOKEN_KEY);
+      return "";
+    }
+    if (Date.now() - saved.savedAt > MAX_AGE_MS) {
+      localStorage.removeItem(TOKEN_KEY);
+      return "";
+    }
+    return saved.token;
   } catch {
     return "";
   }
@@ -19,7 +46,7 @@ export function getToken() {
 
 export function setToken(token) {
   try {
-    if (token) localStorage.setItem(TOKEN_KEY, token);
+    if (token) localStorage.setItem(TOKEN_KEY, JSON.stringify({ token, savedAt: Date.now() }));
     else localStorage.removeItem(TOKEN_KEY);
   } catch {
     // Private windows can refuse storage. The session still works, it just
